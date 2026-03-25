@@ -1,0 +1,6 @@
+
+# Ficheros de emacs
+
+# Ignora los ficheros de backup de emacs
+*~
+
