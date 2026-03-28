@@ -1,0 +1,16 @@
+Clave, Valor
+Descripcion, Fichero usado para transportar las transacciones de pago de CiguaCorp de su sistema de contabilidad a los operadores que los aplican.
+Formato, AnchoFijo
+Extencion, PCC
+
+Nombre, Tipo, Longitud, Precision, Descripcion
+id_cliente, Entero, 5, 0, Identificación del cliente.
+nombre_razon_social, Texto, 100, Nombre o Razón Social del cliente al que se le paga.
+cuenta, Entero, 16, 0, Cuenta bancaria a la cual hacer el pago.
+monto, Decimal, 18, 2, Cantidad de dinero a transferir a la cuenta en cuestión.
+
+Campo, Tipo, Parametros
+id_cliente, Unico,
+id_cliente, NoVacio,
+cuenta, NoVacio,
+Monto, NoVacio,

@@ -1,0 +1,7 @@
+
+package libteddet;
+
+class ReglaValidacion {
+
+
+}
