@@ -3,11 +3,24 @@ Requerimientos
 
 Estos requerimientos son la lista de funcionalidades que se espera que tenga la solución que surja de este proyecto.
 
+La idea es que los requerimientos vayan de lo más básico, de la funcionalidad más necesaria a las funcionalidades de uso menos frecuente.
+
+El orden de las cosas para hacer un cambio es primero conciliar los nuevos requerimientos con los requerimientos previos en este documento, luego hacer cambios al diseño y luego hacer cambios a los fuentes.
+
+Este proyecto consiste en 2 subpartes. El núcleo la prate base una librería que sirva para manejar ficheros de texto tanto de columna de ancho fijo como ficheros separados por comas, a través de formatos predefinidos. La segunda prate una interfaz gráfica para elaborar formatos y también para elaborar ficheros en base a esos formatos.
 
 Requerimientos para la librería (libteddet)
 ===========================================
 
-- Se puede crear un fichero que tiene el formato del fichero de texto.
+Esta es la parte de la librería que es el núcleo del proyecto. Este núcleo va
+
+- La librería tiene que ser escrita en HAXE
+- Apartir de la versión de HAXE tienen que construirse otras versiones
+  - Versión para python
+  - Versión para csharp
+- La librería puede abrir ficheros a partir de un formato.
+- Pueden ser ficheros de texto de columnas de ancho fijo.
+- Pueden ser fichero de texto separados por coma
 - Se puede elegir el formato de las columnas:
   - Columnas de texto
   - Columnas de números enteros
@@ -15,7 +28,7 @@ Requerimientos para la librería (libteddet)
   - Columnas de fecha y hora.
   - Columnas con solo fecha.
   - Columnas con solo hora.
-- se pueden crear reglas de validación para esos ficheros.
+- Se pueden crear reglas de validación para esos ficheros.
   - Validar que una columna solo debe contener digitos decimales.
   - Validar que una columna debe contener un número decimal válido.
   - Validar que los registros de un fichero de ancho fijo tengan la cantidad de texto esperado y no más y no menos.
@@ -45,6 +58,7 @@ Para el futuro
 Requerimientos para la interface gráfica (teddetui)
 ===================================================
 
+- Se puede crear un fichero que tiene el formato del fichero de texto.
 - El usuario puede mantener un inventario de formatos de ficheros
 - El usuario puede abrir un fichero de texto que contiene datos y seleccionar el formato de ese fichero.
 - El programa muestra el contenido de ese fichero de datos en una cuadrícula.
