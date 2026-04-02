@@ -7,7 +7,7 @@ La idea es que los requerimientos vayan de lo más básico, de la funcionalidad 
 
 El orden de las cosas para hacer un cambio es primero conciliar los nuevos requerimientos con los requerimientos previos en este documento, luego hacer cambios al diseño y luego hacer cambios a los fuentes.
 
-Este proyecto consiste en 2 subpartes. El núcleo la prate base una librería que sirva para manejar ficheros de texto tanto de columna de ancho fijo como ficheros separados por comas, a través de formatos predefinidos. La segunda prate una interfaz gráfica para elaborar formatos y también para elaborar ficheros en base a esos formatos.
+Este proyecto consiste en 2 subpartes. El núcleo la prate base una librería que sirva para manejar ficheros de texto tanto de columna de ancho fijo como ficheros separados por comas, a través de formatos predefinidos. La segunda parte una interfaz gráfica para elaborar formatos y también para trabajar con ficheros en base a esos formatos. Trabajar es crearlos y editarlos pero también convertirlos a otros formatos.
 
 Requerimientos para la librería (libteddet)
 ===========================================
@@ -39,6 +39,7 @@ Esta es la parte de la librería que es el núcleo del proyecto. Este núcleo va
   - Una validación que establezca una lista blanca de valores que puede tener una columna.
   - Una validación que establezca una lista negra de valores que no puede contener una columna.
   - Una validación que establezca que en una columna todos los registros deben coincidir con una expresión regular.
+- La librería tiene que ir acompañada de un banco de pruebas y de un programita para ejecutar esas pruebas.
 - un fichero puede tener varios bloques
 - Se le puede pedir al programa que haga un sumario de una o de varias columnas númericas
 - se le puede pedir al programa que cuente los registros que contiene un fichero en un bloque.
@@ -66,6 +67,6 @@ Requerimientos para la interface gráfica (teddetui)
 - El programa pone automáticamente de primero una columna con el número de cada registro.
 - El programa está implementado en python tk con la versión moderna del GUI
 - El programa usa libteddet para abrir los ficheros y los formatos y para escribir la data y los formatos.
-- Cuando se abre un fichero de columnas de ancho fijo se muestra en la parte superior de la tabla una regla en la que se ve el tamaño en caracteles de cada campo alineado con las columnas de la tabla.
+- Cuando se abre un fichero de columnas de ancho fijo se muestra en la parte superior de la tabla una regla en la que se ve el tamaño en caracteres de cada campo alineado con las columnas de la tabla.
 - El texto en la tabla usa un tipo de letra mono, de ancho fijo de modo que no se distorcione el ancho del texto.
 - Se puede leer un fichero en un formato, por ejemplo CSV y luego exportarlo a otro formato, a un fichero de columnas de ancho-fijo y viceversa.
