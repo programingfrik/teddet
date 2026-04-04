@@ -3,24 +3,27 @@ Descripcion, Fichero usado para describir el formato de un fichero
 Formato, SeparadoPorComa
 TablasConEncabezado, Si
 
-Nombre, Tipo, Longitud, Precision, Descripcion, Seccion
-Clave, Texto, , , Clave para configuración del formato, 1
-Valor, Texto, , , Valor para la clave de configuración correspondiente, 1
-Nombre, Texto, , , "Nombre de una columna de una tabla en una sección, tienen que ser nombres únicos de columnas.", 2
-Tipo, Texto, , , El tipo de dato de la columna en cuestión, 2
-Longitud, Entero, , , Cantidad de caracteres o dígitos que puede tener la columna, 2
-Precision, Entero, , , Para los números decimales dice el número de digitos después del punto., 2
-Descripcion, Texto, , , Descripción de la columna, su función en el formato., 2
-Seccion, Entero, , , "Un número de sección dentro del fichero, la mayoría de los CSV tienen una sola sección, pero para nosotros bien podrían tener más de una separada por una linea en blanco.", 2
-Campo, Texto, , , Hace referencia a las columnas declaradas en la sección anterior, 3
-Tipo, Texto, , , Tipo de regla que usa la validación., 3
-Parametros, Texto, , , Más parámetros para la validación., 3
+Nombre, Tipo, Longitud, Precision, Relleno, Alineacion, Descripcion, Bloque
+Clave, Texto, , , , izquierda, Clave para configuración del formato, 1
+Valor, Texto, , , , izquierda, Valor para la clave de configuración correspondiente, 1
+Nombre, Texto, , , , izquierda, "Nombre de una columna en una tabla o bloque, tienen que ser nombres únicos de columnas.", 2
+Tipo, Texto, , , , izquierda, El tipo de dato de la columna en cuestión, 2
+Longitud, Entero, , , , izquierda, Cantidad de caracteres o dígitos que puede tener la columna, 2
+Precision, Entero, , , , , izquierda, Para los números decimales dice el número de digitos después del punto., 2
+Relleno, Texto, , , , izquierda, Indica con que caracter se rellenan las posiciones que quedan vacías., 2
+Alineacion, Texto, , , , izquierda, Dice el lado al que va alineado el campo., 2
+Descripcion, Texto, , , , izquierda, Descripción de la columna, su función en el formato., 2
+Bloque, Entero, , , , izquierda, "Un número de bloque dentro del fichero, la mayoría de los CSV tienen un solo bloque, pero para nosotros bien podrían tener más de una separada por una linea en blanco u otra identificación.", 2
+Campo, Texto, , , , izquierda, Hace referencia a las columnas declaradas en el bloque anterior, 3
+Regla, Texto, , , , izquierda, Tipo de regla que usa la validación., 3
+Parametros, Texto, , , , izquierda, Más parámetros para la validación., 3
+Comentario, Tetxo, , , , izquierda, Un comentario para explicar porque se usa la regla en este formato., 3
 
-Campo, Regla, Parametros
-Clave, NoVacio,
-Nombre, NoVacio,
-Nombre, Unico,
-Tipo, NoVacio,
-Seccion, NoVacio,
-Campo, NoVacio,
-Regla, NoVacio,
+Campo, Regla, Parametros, Comentario
+Clave, NoVacio, ,
+Nombre, NoVacio, ,
+Nombre, Unico, ,
+Tipo, NoVacio, ,
+Bloque, NoVacio, ,
+Campo, NoVacio, ,
+Regla, NoVacio, ,
