@@ -21,11 +21,21 @@ Reader
 
 Un objeto que se va a encargar de leer del fichero en cuestión.
 
+Se crea usando el fichero de formato.
+
 Una vez creado el fichero se puede iterar por el.
+
+Le puede leer registro a registro.
+
+Según se va leyendo se hacen las validaciones de acuerdo con los tipos y las validaciones.
 
 Writer
 ------
 
 Un objeto que se va a encargar de escribir el fichero en cuestión.
 
+Se crea usando el fichero de formato.
+
 Una vez creado el objeto, solo hay que ir pasandole los valores que van a formar un registro.
+
+Se hace validación de los valores según se van pasando de acuerdo con los tipos y las reglas.

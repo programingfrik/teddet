@@ -1,6 +1,6 @@
 Requerimientos
 ==============
-
+    
 Estos requerimientos son la lista de funcionalidades que se espera que tenga la solución que surja de este proyecto.
 
 La idea es que los requerimientos vayan de lo más básico, de la funcionalidad más necesaria a las funcionalidades de uso menos frecuente.
