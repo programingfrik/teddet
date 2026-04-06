@@ -5,3 +5,8 @@
 *~
 \#*
 \#*\#
+
+
+# Ignora los directorios de salida de las diferentes versiones de la librería
+pyver/
+csver/

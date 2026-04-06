@@ -1,0 +1,19 @@
+
+
+--class-path src/
+--dce full
+
+libteddet.Reader
+libteddet.Writer
+libteddet.Formato
+libteddet.Columna
+libteddet.ReglaValidacion
+libteddet.FicheroTextoData
+
+--each
+
+--python pyver/libteddet.py
+
+--next
+
+--cs csver

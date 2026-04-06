@@ -1,6 +1,7 @@
 
 package libteddet;
 
+@:keep
 class Columna {
     var nombre:String;
     var tipo:String;

@@ -1,9 +1,9 @@
 
 package libteddet;
 
-using sys.io;
+using sys.io.File;
 
-
+@:keep
 class Reader {
 
 
