@@ -12,8 +12,8 @@ libteddet.FicheroTextoData
 
 --each
 
---python pyver/libteddet.py
+--python build/pyver/libteddet.py
 
 --next
 
---cs csver
+--cs build/csver/libteddet
