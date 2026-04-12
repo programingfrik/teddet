@@ -8,5 +8,6 @@
 
 
 # Ignora los directorios de salida de las diferentes versiones de la librería
+build/
 pyver/
 csver/
