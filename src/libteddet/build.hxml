@@ -6,7 +6,8 @@
 libteddet.Reader
 libteddet.Writer
 libteddet.Formato
-libteddet.Columna
+libteddet.Table
+libteddet.Column
 libteddet.ReglaValidacion
 libteddet.FicheroTextoData
 

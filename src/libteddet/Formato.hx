@@ -7,6 +7,14 @@ class Formato {
     var tipoFichero:String;
     var descripcion:String;
     
-    var columnas:Columna;
+    var tablas:Table;
     var reglas:ReglaValidacion;
+
+    function new() {
+        
+    }
+
+    function addtable() {
+
+    }
 }

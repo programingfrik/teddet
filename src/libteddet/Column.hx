@@ -2,7 +2,7 @@
 package libteddet;
 
 @:keep
-class Columna {
+class Column {
     var nombre:String;
     var tipo:String;
     var longitud:Int;
