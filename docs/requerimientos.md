@@ -59,6 +59,10 @@ Para el futuro
 Requerimientos para la interface gráfica (teddetui)
 ===================================================
 
+- Se puede abrir ficheros de texto de ancho fijo y separados por coma.
+- Se puede editar los campos de texto del fichero.
+- Se puede salvar el fichero modificado.
+- Se puede exportar un fichero a otro formato.
 - Se puede crear un fichero que tiene el formato del fichero de texto.
 - El usuario puede mantener un inventario de formatos de ficheros
 - El usuario puede abrir un fichero de texto que contiene datos y seleccionar el formato de ese fichero.

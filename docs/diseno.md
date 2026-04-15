@@ -15,6 +15,8 @@ Estoy usando como ejemplo de como debería ser implementada una librería como e
 
 
 
+Diseño libteddet
+================
 
 Reader
 ------
@@ -39,3 +41,13 @@ Se crea usando el fichero de formato.
 Una vez creado el objeto, solo hay que ir pasandole los valores que van a formar un registro.
 
 Se hace validación de los valores según se van pasando de acuerdo con los tipos y las reglas.
+
+
+Diseño teddetui
+===============
+
+La pantalla principal es una ventana con una cuadrícula, una espacio para poner las tablas de texto.
+
+Como un fichero puede tener varias tablas el espacio principal puede tener varias tablas anidadas.
+
+La ventana principal tiene un menú con opciones archivo y editar.
