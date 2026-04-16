@@ -8,10 +8,10 @@ class Reader {
 
     var Formato formato;
     var FileInput file;
-    
-    
-    function new(file:FileInput, formato:Formato) {
-        
+
+
+    function new(file:FileInput, format:String) {
+
     }
 
     function readrow() {
