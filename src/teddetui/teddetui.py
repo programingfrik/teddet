@@ -5,7 +5,8 @@ import tkinter as tki
 from tkinter import ttk
 #import libteddet
 
-class TeddetUI():
+class TeddetUI(#Frame
+):
     def __init__(self, # master = None
                  ):
         # tki.Frame.__init__(self, master)
@@ -17,12 +18,16 @@ class TeddetUI():
 
         root.option_add("*tearOff", False)
 
-        root.title("teddetui")
+        root.title("TEDDET")
 
-        menu_prin = tki.Menu(root)
-        root["menu"] = menu_prin
-        menu_file = tki.Menu(menu_prin)
-        menu_prin.add_cascade(menu = menu_file, label = "File")
+        menubar = tki.Menu(root)
+        root["menu"] = menubar
+
+        menu_file = tki.Menu(menubar)
+        menu_edit = tki.Menu(menubar)
+
+        menubar.add_cascade(menu = menu_file, label = "File")
+        menubar.add_cascade(menu = menu_edit, label = "Edit")
 
         # print(win.configure())
         # root = tki.Tk(className = "TeddetUI")
