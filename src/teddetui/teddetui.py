@@ -9,20 +9,22 @@ class TeddetUI():
     def __init__(self, # master = None
                  ):
         # tki.Frame.__init__(self, master)
+
         # top = self
-        # top.master.title("teddetui")
         root = tki.Tk()
         #top = tki.Toplevel(root)
+        # win = self.master
 
         root.option_add("*tearOff", False)
 
-        # win = self.master
+        root.title("teddetui")
+
         menu_prin = tki.Menu(root)
         root["menu"] = menu_prin
         menu_file = tki.Menu(menu_prin)
         menu_prin.add_cascade(menu = menu_file, label = "File")
-        # print(win.configure())
 
+        # print(win.configure())
         # root = tki.Tk(className = "TeddetUI")
         # frm = ttk.Frame(root)
         # frm.grid()
