@@ -1,7 +1,8 @@
 Clave, Valor
+Nombre, Formato de Pagos Cigua Corp
 Descripcion, Fichero usado para transportar las transacciones de pago de CiguaCorp de su sistema de contabilidad a los operadores que los aplican.
-Formato, AnchoFijo
-Extencion, PCC
+Tipo, AnchoFijo
+Extencion, pcc
 
 Nombre, Tipo, Longitud, Precision, Relleno, Alineacion, Descripcion, Bloque
 id_cliente, Entero, 5, 0, , derecha, Identificación del cliente., 1

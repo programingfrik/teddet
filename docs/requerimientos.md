@@ -9,6 +9,7 @@ El orden de las cosas para hacer un cambio es primero conciliar los nuevos reque
 
 Este proyecto consiste en 2 subpartes. El núcleo la prate base una librería que sirva para manejar ficheros de texto tanto de columna de ancho fijo como ficheros separados por comas, a través de formatos predefinidos. La segunda parte una interfaz gráfica para elaborar formatos y también para trabajar con ficheros en base a esos formatos. Trabajar es crearlos y editarlos pero también convertirlos a otros formatos.
 
+
 Requerimientos para la librería (libteddet)
 ===========================================
 
@@ -62,9 +63,9 @@ Requerimientos para la interface gráfica (teddetui)
 - Se puede abrir ficheros de texto de ancho fijo y separados por coma.
 - Se puede editar los campos de texto del fichero.
 - Se puede salvar el fichero modificado.
-- Se puede exportar un fichero a otro formato.
+- Se puede exportar un fichero a otro formato, inicialmente csv.
 - Se puede crear un fichero que tiene el formato del fichero de texto.
-- El usuario puede mantener un inventario de formatos de ficheros
+- El usuario puede mantener un inventario de formatos de ficheros.
 - El usuario puede abrir un fichero de texto que contiene datos y seleccionar el formato de ese fichero.
 - El programa muestra el contenido de ese fichero de datos en una cuadrícula.
 - El programa permite ordenar la tabla del texto por cualquiera de las columnas que posee los datos.
@@ -74,3 +75,10 @@ Requerimientos para la interface gráfica (teddetui)
 - Cuando se abre un fichero de columnas de ancho fijo se muestra en la parte superior de la tabla una regla en la que se ve el tamaño en caracteres de cada campo alineado con las columnas de la tabla.
 - El texto en la tabla usa un tipo de letra mono, de ancho fijo de modo que no se distorcione el ancho del texto.
 - Se puede leer un fichero en un formato, por ejemplo CSV y luego exportarlo a otro formato, a un fichero de columnas de ancho-fijo y viceversa.
+- Tiene que soportar drag and drop para abrir ficheros que se sueltan dentro de la ventana.
+- Al formato se le pueden poner validaciones para el fichero.
+- El programa tiene que mostrar una lista con los errores de validación.
+- Las validaciones tienen mensajes explicitos entendibles que se pueden usar para endender porque una validación no está pasando.
+- Cuando se hace clic en el mensaje de error la grilla enfoca ese elemento que tiene problemas.
+- Dentro de la propia tabla se marcan los elementos que infringen alguna validación, si es una sola celda, esa celda, si es toda una colmuna esa columna, si es una fila completa, esa fila.
+- Si un elemento está marcado porque tiene un error, fila, columna, celda, cuando se toca ese elemento se muestra un mensaje con la validación que está infringiendo.

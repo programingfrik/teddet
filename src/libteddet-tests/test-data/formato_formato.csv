@@ -1,6 +1,7 @@
 Clave, Valor
+Nombre, Formato de Formato
 Descripcion, Fichero usado para describir el formato de un fichero
-Formato, SeparadoPorComa
+Tipo, SeparadoPorComa
 TablasConEncabezado, Si
 
 Nombre, Tipo, Longitud, Precision, Relleno, Alineacion, Descripcion, Bloque
@@ -14,16 +15,18 @@ Relleno, Texto, , , , izquierda, Indica con que caracter se rellenan las posicio
 Alineacion, Texto, , , , izquierda, Dice el lado al que va alineado el campo., 2
 Descripcion, Texto, , , , izquierda, Descripción de la columna, su función en el formato., 2
 Bloque, Entero, , , , izquierda, "Un número de bloque dentro del fichero, la mayoría de los CSV tienen un solo bloque, pero para nosotros bien podrían tener más de una separada por una linea en blanco u otra identificación.", 2
-Campo, Texto, , , , izquierda, Hace referencia a las columnas declaradas en el bloque anterior, 3
+Bloque, entero, , , , izquierda, Bloque el que se encuentra el campo al que se hace referencia., 3
+Campo, Texto, , , , izquierda, Hace referencia a las columnas declaradas en el bloque anterior., 3
 Regla, Texto, , , , izquierda, Tipo de regla que usa la validación., 3
 Parametros, Texto, , , , izquierda, Más parámetros para la validación., 3
 Comentario, Tetxo, , , , izquierda, Un comentario para explicar porque se usa la regla en este formato., 3
 
-Campo, Regla, Parametros, Comentario
-Clave, NoVacio, ,
-Nombre, NoVacio, ,
-Nombre, Unico, ,
-Tipo, NoVacio, ,
-Bloque, NoVacio, ,
-Campo, NoVacio, ,
-Regla, NoVacio, ,
+Bloque, Campo, Regla, Parametros, Comentario
+1, Clave, NoVacio, ,
+2, Nombre, NoVacio, ,
+2, Nombre, Unico, ,
+2, Tipo, NoVacio, ,
+2, Bloque, NoVacio, ,
+3, Bloque, NoVacio, ,
+3, Campo, NoVacio, ,
+3, Regla, NoVacio, ,
