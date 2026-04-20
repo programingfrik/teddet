@@ -34,6 +34,7 @@ class TeddetGUI():
         menu_frmt = tki.Menu(self.menub)
         self.menub.add_cascade(menu = menu_frmt, label = "Format")
         menu_frmt.add_command(label = "Choose Format", command = self.com_choose_form)
+        menu_frmt.add_command(label = "Format details", command = self.com_format_details)
         menu_help = tki.Menu(self.menub)
         self.menub.add_cascade(menu = menu_help, label = "Help")
         menu_help.add_command(label = "Manual", command = self.com_manual)
@@ -57,12 +58,14 @@ class TeddetGUI():
     def com_choose_form(self):
         pass
 
+    def com_format_details(self):
+        pass
+
     def com_manual(self):
         pass
 
     def com_about(self):
         messagebox.showinfo(message = "Un pollo cruzó la calle", title = "Algo pasó", icon = messagebox.INFO)
-
         pass
 
 
