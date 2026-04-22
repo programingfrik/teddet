@@ -6,8 +6,8 @@
 \#*
 \#*\#
 
-
 # Ignora los directorios de salida de las diferentes versiones de la librería
 build/
-pyver/
-csver/
+
+# Ignora los pycache que solo le pertenecen a la máquina local.
+__pycache__/

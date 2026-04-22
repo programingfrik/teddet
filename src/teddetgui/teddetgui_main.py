@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 import tkinter as tki
-from tkinter import ttk
-from tkinter import messagebox
+from tkinter import ttk, messagebox
+from teddetgui.about import about_teddet
 #import libteddet
 
 class TeddetGUI():
@@ -65,7 +65,7 @@ class TeddetGUI():
         pass
 
     def com_about(self):
-        messagebox.showinfo(message = "Un pollo cruzó la calle", title = "Algo pasó", icon = messagebox.INFO)
+        about = about_teddet(self.root)
         pass
 
 
