@@ -16,7 +16,7 @@
 # haxe -main TestBasics --interp -L utest
 
 # quiero saber la ruta de prepare.py para poder ejecutar las acciones
-# 
+#
 
 import sys
 import argparse
@@ -29,33 +29,41 @@ pyinterpath = None
 inter = None
 
 def com_execute(subject):
-    global projectdir, cwdrel, pyinterpath, inter
+    global projectdir, pyinterpath, inter
     print(f"com_execute {subject}")
-    path = ""
+    initpath = None
+    path = None
     args = []
     if subject == "teddetgui":
-        os.chdir(projectdir.joinpath("src"))
+        initpath = projectdir.joinpath("src")
         path = pyinterpath.joinpath(inter)
         args += [path, "-m", "teddetgui"]
     elif subject == "libteddet_tests":
-        os.chdir(projectdir.joinpath("src", "libteddet_tests"))
+        initpath = projectdir.joinpath("src", "libteddet_tests")
         path = get_bin_path("haxe").joinpath("haxe")
         args = [path, "-main", "TestBasics", "--interp", "-L", "utest"]
     else:
         print(f"Error: don't know how to execute {subject}")
         return
+    print(f"Initial path: {initpath}")
+    print("Excuting: {0}".format(" ".join([str(a) for a in args])))
+    os.chdir(initpath)
     os.execv(path, args)
 
 def com_build(subject):
-    global projectdir, cwdrel
+    global projectdir
     print(f"com_build {subject}")
+
     if subject == "libteddet":
-        os.chdir(projectdir)
+        initpath = projectdir
         path = get_bin_path("haxe").joinpath("haxe")
         args = [path, pathlib.Path("src", "libteddet", "build.hxml")]
     else:
         print(f"Error: don't know how to build {subject}")
         return
+    print(f"Initial path: {initpath}")
+    print("Excuting: {0}".format(" ".join([str(a) for a in args])))
+    os.chdir(initpath)
     os.execv(path, args)
 
 def com_pack():
@@ -91,7 +99,7 @@ def main():
     cliparser.add_argument("command", help = "Sub-command that yout want to execute", nargs = "?")
     cliparser.add_argument("subject", help = "Subject of the command", nargs = "?")
     args = cliparser.parse_args()
-    
+
     if (args.command in ["execute", "build"]) and (not args.subject):
         cliparser.print_help()
         print(f"Error: {args.command} requires a subject.")
