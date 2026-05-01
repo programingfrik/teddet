@@ -21,31 +21,64 @@
 import sys
 import argparse
 import os
+import pathlib
+
+projectdir = None
+cwdrel = None
 
 def com_execute(subject):
+    global projectdir, cwdrel
+
+    command = ""
+    args = []
+    
     if subject == "teddetgui":
-        print("Not implemented yet")
-        print(os.getcwd())
+        command = "cd d:\\pmercader\\proyectos\\teddet\\src && \"c:\\Program Files\\Python314\\python.exe\" -m teddetgui"
+        args = []
     elif subject == "libteddet_tests":
-        print("Not implemented yet")
-    pass
+        command = "haxe -main TestBasics --interp -L utest"
+        args = []
+    else:
+        print(f"Error: {subject} is unknown")
+        return
+
+    os.execv()
 
 def com_build(subject):
+    global projectdir, cwdrel
     if subject == "libteddet":
+        command = ""
+        args = []
         print("Not implemented yet")
+    else:
+        print(f"Error: don't know how to build {subject}")
 
 def com_pack():
     print("Not implemented yet")
 
 def infere_action():
+    global projectdir, cwdrel
     print("infere_action")
-    print("Not implemented yet")
+    if cwdrel.is_relative_to(pathlib.Path("src", "libteddet")):
+        com_build("libteddet")
+    elif cwdrel.is_relative_to(pathlib.Path("src", "libteddet_tests")):
+        com_execute("libteddet_tests")
+    else:
+        com_execute("teddetgui")
+
+def get_projectdir():
+    global projectdir, cwdrel
+    parts = pathlib.Path(os.getcwd()).parts
+    projectdir = pathlib.Path(*parts[:parts.index("teddet") + 1])
+    cwdrel = pathlib.Path(*parts[parts.index("teddet") + 1:])
 
 def main():
+    get_projectdir()
     cliparser = argparse.ArgumentParser()
-    cliparser.add_argument("command", help = "The command that yout want to execute", nargs = "?")
-    cliparser.add_argument("subject", help = "This is the subject of the command", nargs = "?")
+    cliparser.add_argument("command", help = "Sub-command that yout want to execute", nargs = "?")
+    cliparser.add_argument("subject", help = "Subject of the command", nargs = "?")
     args = cliparser.parse_args()
+    
     if (args.command in ["execute", "build"]) and (not args.subject):
         cliparser.print_help()
         print(f"Error: {args.command} requires a subject.")
