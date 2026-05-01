@@ -2,7 +2,7 @@
 package libteddet;
 
 @:keep
-class ReglaValidacion {
+class ValidationRule {
 
 
 }

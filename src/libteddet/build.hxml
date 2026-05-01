@@ -5,10 +5,10 @@
 
 libteddet.Reader
 libteddet.Writer
-libteddet.Formato
+libteddet.Format
 libteddet.Table
 libteddet.Column
-libteddet.ReglaValidacion
+libteddet.ValidationRule
 libteddet.FicheroTextoData
 
 --each

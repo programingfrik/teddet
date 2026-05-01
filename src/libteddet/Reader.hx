@@ -1,13 +1,13 @@
 
 package libteddet;
 
-using sys.io.File;
+using sys.io.FileInput;
 
 @:keep
 class Reader {
 
-    var Formato formato;
-    var FileInput file;
+    var format:Format;
+    var file:FileInput;
 
 
     function new(file:FileInput, format:String) {

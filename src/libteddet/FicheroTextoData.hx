@@ -2,5 +2,5 @@
 package libteddet;
 
 class FicheroTextoData {
-    var formato:Formato;    
+    var format:Format;
 }

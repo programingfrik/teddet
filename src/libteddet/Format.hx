@@ -2,16 +2,16 @@
 package libteddet;
 
 @:keep
-class Formato {
+class Format {
     var ficheroFormato:String;
     var tipoFichero:String;
     var descripcion:String;
-    
+
     var tablas:Table;
-    var reglas:ReglaValidacion;
+    var reglas:ValidationRule;
 
     function new() {
-        
+
     }
 
     function addtable() {

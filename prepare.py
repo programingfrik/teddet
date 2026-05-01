@@ -54,7 +54,6 @@ def com_execute(subject):
 def com_build(subject):
     global projectdir, hxbin
     print(f"com_build {subject}")
-
     if subject == "libteddet":
         initpath = projectdir
         path = get_bin_path(hxbin).joinpath(hxbin)
