@@ -27,9 +27,10 @@ projectdir = None
 cwdrel = None
 pyinterpath = None
 inter = None
+hxbin = None
 
 def com_execute(subject):
-    global projectdir, pyinterpath, inter
+    global projectdir, pyinterpath, inter, hxbin
     print(f"com_execute {subject}")
     initpath = None
     path = None
@@ -40,7 +41,7 @@ def com_execute(subject):
         args += [path, "-m", "teddetgui"]
     elif subject == "libteddet_tests":
         initpath = projectdir.joinpath("src", "libteddet_tests")
-        path = get_bin_path("haxe").joinpath("haxe")
+        path = get_bin_path(hxbin).joinpath(hxbin)
         args = [path, "-main", "TestBasics", "--interp", "-L", "utest"]
     else:
         print(f"Error: don't know how to execute {subject}")
@@ -51,12 +52,12 @@ def com_execute(subject):
     os.execv(path, args)
 
 def com_build(subject):
-    global projectdir
+    global projectdir, hxbin
     print(f"com_build {subject}")
 
     if subject == "libteddet":
         initpath = projectdir
-        path = get_bin_path("haxe").joinpath("haxe")
+        path = get_bin_path(hxbin).joinpath(hxbin)
         args = [path, pathlib.Path("src", "libteddet", "build.hxml")]
     else:
         print(f"Error: don't know how to build {subject}")
@@ -84,7 +85,7 @@ def get_bin_path(bin):
             if pathlib.Path(p, bin).exists()][0].parent
 
 def get_paths():
-    global projectdir, cwdrel, pyinterpath, inter
+    global projectdir, cwdrel, pyinterpath, inter, hxbin
     parts = pathlib.Path(os.getcwd()).parts
     projectdir = pathlib.Path(*parts[:parts.index("teddet") + 1])
     cwdrel = pathlib.Path(*parts[parts.index("teddet") + 1:])
@@ -92,6 +93,7 @@ def get_paths():
     inter = pathlib.Path(sys.orig_argv[0]).name
     if not pyinterpath.is_absolute():
         pyinterpath = get_bin_path(inter)
+    hxbin = "haxe.exe" if sys.platform == "win32" else "haxe"
 
 def main():
     get_paths()
