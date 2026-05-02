@@ -39,7 +39,7 @@ def com_execute(subject):
     env = os.environ
     if subject == "teddetgui":
         initpath = projectdir.joinpath("src")
-        env["PYTHONPATH"] = initpath
+        env["PYTHONPATH"] = str(initpath)
         path = pyinterpath.joinpath(inter)
         args = [path, "-m", "teddetgui"]
     elif subject == "libteddet_tests":
@@ -50,8 +50,9 @@ def com_execute(subject):
         print(f"Error: don't know how to execute {subject}")
         return
     print(f"Initial path: {initpath}")
+    print(f"args: {args}")
     print("Excuting: {0}".format(" ".join([str(a) for a in args])))
-    os.execve(path, args, env)
+    os.spawnve(os.P_WAIT, path, args, env)
 
 def com_build(subject):
     global projectdir, hxbin, cwdrel
@@ -70,7 +71,7 @@ def com_build(subject):
         return
     print(f"Initial path: {initpath}")
     print("Excuting: {0}".format(" ".join([str(a) for a in args])))
-    os.execv(path, args)
+    os.spawnv(os.P_WAIT, path, args)
 
 def com_pack():
     print("Not implemented yet")
@@ -94,8 +95,8 @@ def get_paths():
     parts = pathlib.Path(os.getcwd()).parts
     projectdir = pathlib.Path(*parts[:parts.index("teddet") + 1])
     cwdrel = pathlib.Path(*parts[parts.index("teddet") + 1:])
-    pyinterpath = pathlib.Path(sys.orig_argv[0]).parent
-    inter = pathlib.Path(sys.orig_argv[0]).name
+    pyinterpath = pathlib.Path(sys.executable).parent
+    inter = pathlib.Path(sys.executable).name
     if not pyinterpath.is_absolute():
         pyinterpath = get_bin_path(inter)
     hxbin = "haxe.exe" if sys.platform == "win32" else "haxe"
