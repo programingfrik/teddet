@@ -30,40 +30,46 @@ inter = None
 hxbin = None
 
 def com_execute(subject):
-    global projectdir, pyinterpath, inter, hxbin
+    global projectdir, pyinterpath, inter, hxbin, cwdrel
     print(f"com_execute {subject}")
+    cwd = projectdir.joinpath(cwdrel)
     initpath = None
     path = None
     args = []
+    env = os.environ
     if subject == "teddetgui":
         initpath = projectdir.joinpath("src")
+        env["PYTHONPATH"] = initpath
         path = pyinterpath.joinpath(inter)
-        args += [path, "-m", "teddetgui"]
+        args = [path, "-m", "teddetgui"]
     elif subject == "libteddet_tests":
-        initpath = projectdir.joinpath("src", "libteddet_tests")
+        initpath = projectdir.joinpath("src", "libteddet_tests").relative_to(cwd, walk_up = True)
         path = get_bin_path(hxbin).joinpath(hxbin)
-        args = [path, "-main", "TestBasics", "--interp", "-L", "utest"]
+        args = [path, "-p", initpath, "-main", "TestBasics", "--interp", "-L", "utest"]
     else:
         print(f"Error: don't know how to execute {subject}")
         return
     print(f"Initial path: {initpath}")
     print("Excuting: {0}".format(" ".join([str(a) for a in args])))
-    os.chdir(initpath)
-    os.execv(path, args)
+    os.execve(path, args, env)
 
 def com_build(subject):
-    global projectdir, hxbin
+    global projectdir, hxbin, cwdrel
     print(f"com_build {subject}")
+    cwd = projectdir.joinpath(cwdrel)
+    initpath = None
+    path = None
+    args = []
     if subject == "libteddet":
-        initpath = projectdir
+        initpath = projectdir.joinpath("src").relative_to(cwd, walk_up = True)
         path = get_bin_path(hxbin).joinpath(hxbin)
-        args = [path, pathlib.Path("src", "libteddet", "build.hxml")]
+        args = [path, "-p", initpath,
+                projectdir.joinpath("src", "libteddet", "build.hxml").relative_to(cwd, walk_up = True)]
     else:
         print(f"Error: don't know how to build {subject}")
         return
     print(f"Initial path: {initpath}")
     print("Excuting: {0}".format(" ".join([str(a) for a in args])))
-    os.chdir(initpath)
     os.execv(path, args)
 
 def com_pack():
@@ -112,7 +118,8 @@ def main():
         com_pack()
     elif args.command:
         cliparser.print_help()
-        print(f"Error: {args.command} is not a valid command.")
+        print(f"Error: {args.command} is not a valid command."
+              + " Try \"execute\", \"build\" or \"pack\".")
     else:
         infere_action()
 
