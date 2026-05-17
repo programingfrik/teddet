@@ -1,13 +1,20 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-# This is a simple python script to help me while building teddet. This script must work with python3 standard and work regardless of the OS or FileSystem or the location from it was called.
-#
+# This is a simple python script to help me while building
+# teddet. This script must work with python3 standard and work
+# regardless of the OS or FileSystem or the location from wich
+# it was called.
+
 # This script can take this sub-commands and act accordingly:
 # - execute teddetgui
 # - execute libtedddet_tests
 # - build libteddet
 # - pack
+
+# The script tries to execute the commands using relative paths to the
+# current directory from wich it was called so that any posible error
+# that happens has a relative path for emacs to find.
 
 # execute teddetgui
 # "cd d:\\pmercader\\proyectos\\teddet\\src && \"c:\\Program Files\\Python314\\python.exe\" -m teddetgui"
@@ -15,8 +22,8 @@
 # execute libteddet_tests
 # haxe -main TestBasics --interp -L utest
 
-# quiero saber la ruta de prepare.py para poder ejecutar las acciones
-#
+# Emacs is responsible for determining the path to this script and put
+# it in the compile-command variable.
 
 import sys
 import argparse
