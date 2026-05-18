@@ -67,7 +67,7 @@ def com_build(subject):
     cwd = projectdir.joinpath(cwdrel)
     initpath = None
     path = None
-    args = []
+    argsl = []
     if subject == "libteddet":
         initpath = projectdir.joinpath("src").relative_to(cwd, walk_up = True)
         path = get_bin_path(hxbin).joinpath(hxbin)
