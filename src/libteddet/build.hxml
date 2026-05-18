@@ -10,11 +10,3 @@ libteddet.Table
 libteddet.Column
 libteddet.ValidationRule
 libteddet.FicheroTextoData
-
---each
-
---python build/pyver/libteddet.py
-
---next
-
---cs build/csver/libteddet

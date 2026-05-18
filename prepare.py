@@ -71,14 +71,21 @@ def com_build(subject):
     if subject == "libteddet":
         initpath = projectdir.joinpath("src").relative_to(cwd, walk_up = True)
         path = get_bin_path(hxbin).joinpath(hxbin)
-        args = [path, "-p", initpath,
-                projectdir.joinpath("src", "libteddet", "build.hxml").relative_to(cwd, walk_up = True)]
+        bhxp = projectdir.joinpath("src", "libteddet", "build.hxml") \
+                         .relative_to(cwd, walk_up = True)
+        pyvp = projectdir.joinpath("build", "pyver", "libteddet.py") \
+                        .relative_to(cwd, walk_up = True)
+        csvp = projectdir.joinpath("build", "csver", "libteddet") \
+                        .relative_to(cwd, walk_up = True)
+        argsl = [[path, "-p", initpath, bhxp, "--python", pyvp],
+                 [path, "-p", initpath, bhxp, "--cs", csvp]]
     else:
         print(f"Error: don't know how to build {subject}")
         return
     print(f"Initial path: {initpath}")
-    print("Excuting: {0}".format(" ".join([str(a) for a in args])))
-    os.spawnv(os.P_WAIT, path, args)
+    for args in argsl:
+        print("Excuting: {0}".format(" ".join([str(a) for a in args])))
+        os.spawnv(os.P_WAIT, path, args)
 
 def com_pack():
     print("Not implemented yet")
