@@ -77,8 +77,10 @@ def com_build(subject):
                         .relative_to(cwd, walk_up = True)
         csvp = projectdir.joinpath("build", "csver", "libteddet") \
                         .relative_to(cwd, walk_up = True)
-        argsl = [[path, "-p", initpath, bhxp, "--python", pyvp],
-                 [path, "-p", initpath, bhxp, "--cs", csvp]]
+        argsl = [[path, "-p", initpath, bhxp]]
+        argsl.append(argsl[0].copy())
+        argsl[0] += ["--python", pyvp]
+        argsl[1] += ["--cs", csvp]
     else:
         print(f"Error: don't know how to build {subject}")
         return
