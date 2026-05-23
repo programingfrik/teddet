@@ -48,11 +48,11 @@ def com_execute(subject):
         initpath = projectdir.joinpath("src")
         env["PYTHONPATH"] = str(initpath)
         path = pyinterpath.joinpath(inter)
-        args = [path, "-m", "teddetgui"]
+        args = [path.name, "-m", "teddetgui"]
     elif subject == "libteddet_tests":
         initpath = projectdir.joinpath("src", "libteddet_tests").relative_to(cwd, walk_up = True)
         path = get_bin_path(hxbin).joinpath(hxbin)
-        args = [path, "-p", initpath, "-main", "TestBasics", "--interp", "-L", "utest"]
+        args = [path.name, "-p", initpath, "-main", "TestBasics", "--interp", "-L", "utest"]
     else:
         print(f"Error: don't know how to execute {subject}")
         return
@@ -77,7 +77,7 @@ def com_build(subject):
                         .relative_to(cwd, walk_up = True)
         csvp = projectdir.joinpath("build", "csver", "libteddet") \
                         .relative_to(cwd, walk_up = True)
-        argsl = [[path, "-p", initpath, bhxp]]
+        argsl = [[path.name, "-p", initpath, bhxp]]
         argsl.append(argsl[0].copy())
         argsl[0] += ["--python", pyvp]
         argsl[1] += ["--cs", csvp]
