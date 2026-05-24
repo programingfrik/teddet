@@ -6,23 +6,23 @@ using sys.io.FileInput;
 @:keep
 class Reader {
 
-    var format:Format;
     var file:FileInput;
+    var format:Format;
 
+    function new(file:FileInput, ?format:String) {
+        this.file = file;
+        // this.format = format;
+    }
 
-    function new(file:FileInput, format:String) {
+    function read_row() {
 
     }
 
-    function readrow() {
+    function read_table() {
 
     }
 
-    function readtable() {
-
-    }
-
-    function readfile() {
+    function read_file() {
 
     }
 
