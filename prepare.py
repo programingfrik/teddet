@@ -16,12 +16,6 @@
 # current directory from wich it was called so that any posible error
 # that happens has a relative path for emacs to find.
 
-# execute teddetgui
-# "cd d:\\pmercader\\proyectos\\teddet\\src && \"c:\\Program Files\\Python314\\python.exe\" -m teddetgui"
-
-# execute libteddet_tests
-# haxe -main TestBasics --interp -L utest
-
 # Emacs is responsible for determining the path to this script and put
 # it in the compile-command variable.
 
