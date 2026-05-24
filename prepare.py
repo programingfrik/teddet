@@ -59,6 +59,7 @@ def com_execute(subject):
     print(f"Initial path: {initpath}")
     print(f"args: {args}")
     print("Excuting: {0}".format(" ".join([str(a) for a in args])))
+    print("python d:\\pmercader\\proyectos\\teddet\\prepare.py")
     os.spawnve(os.P_WAIT, path, args, env)
 
 def com_build(subject):
@@ -109,6 +110,10 @@ def get_bin_path(bin):
 def get_paths():
     global projectdir, cwdrel, pyinterpath, inter, hxbin
     parts = pathlib.Path(os.getcwd()).parts
+    if "teddet" not in parts:
+        print("Error: Your away from the project dir,"
+              + " get back in there and then call me again.")
+        sys.exit(1)
     projectdir = pathlib.Path(*parts[:parts.index("teddet") + 1])
     cwdrel = pathlib.Path(*parts[parts.index("teddet") + 1:])
     pyinterpath = pathlib.Path(sys.executable).parent
