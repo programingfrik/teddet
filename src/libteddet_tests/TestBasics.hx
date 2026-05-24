@@ -7,8 +7,7 @@ import sys.io.File;
 class TestBasics extends utest.Test {
 
     function test_BasicRead() {
-        // "test_data/20260404_0831_donaciones.PCC"
-        // Format fmtpagoc = Format("test_data/pagos_ciguacorp.csv");
+        var fmtpagoc:Format = Format("test_data/pagos_ciguacorp.csv");
         // FileInput pago = File.read("test_data/20260404_0831_donaciones.PCC");
         // Reader rdpago = Reader(pago, fmtpagoc);
         // reg = rdpago.read_row();
