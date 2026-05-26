@@ -44,9 +44,10 @@ def com_execute(subject):
         path = pyinterpath.joinpath(inter)
         args = [path.name, "-m", "teddetgui"]
     elif subject == "libteddet_tests":
-        initpath = projectdir.joinpath("src", "libteddet_tests").relative_to(cwd, walk_up = True)
+        initpath = projectdir.joinpath("src").relative_to(cwd, walk_up = True)
         path = get_bin_path(hxbin).joinpath(hxbin)
-        args = [path.name, "-p", initpath, "-main", "TestBasics", "--interp", "-L", "utest"]
+        hxmlp = projectdir.joinpath("src", "libteddet_tests", "run_tests.hxml").relative_to(cwd, walk_up = True)
+        args = [path.name, "-p", initpath, hxmlp]
     else:
         print(f"Error: don't know how to execute {subject}")
         return
@@ -66,13 +67,13 @@ def com_build(subject):
     if subject == "libteddet":
         initpath = projectdir.joinpath("src").relative_to(cwd, walk_up = True)
         path = get_bin_path(hxbin).joinpath(hxbin)
-        bhxp = projectdir.joinpath("src", "libteddet", "build.hxml") \
+        hxmlp = projectdir.joinpath("src", "libteddet", "build.hxml") \
                          .relative_to(cwd, walk_up = True)
         pyvp = projectdir.joinpath("build", "pyver", "libteddet.py") \
                         .relative_to(cwd, walk_up = True)
         csvp = projectdir.joinpath("build", "csver", "libteddet") \
                         .relative_to(cwd, walk_up = True)
-        argsl = [[path.name, "-p", initpath, bhxp]]
+        argsl = [[path.name, "-p", initpath, hxmlp]]
         argsl.append(argsl[0].copy())
         argsl[0] += ["--python", pyvp]
         argsl[1] += ["--cs", csvp]

@@ -3,11 +3,12 @@ import utest.Runner;
 import utest.ui.Report;
 import utest.Assert;
 import sys.io.File;
+import libteddet.Format;
 
 class TestBasics extends utest.Test {
 
     function test_BasicRead() {
-        var fmtpagoc:Format = Format("test_data/pagos_ciguacorp.csv");
+        var fmtpagoc:Format = new Format("test_data/pagos_ciguacorp.csv");
         // FileInput pago = File.read("test_data/20260404_0831_donaciones.PCC");
         // Reader rdpago = Reader(pago, fmtpagoc);
         // reg = rdpago.read_row();

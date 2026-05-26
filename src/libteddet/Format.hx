@@ -14,7 +14,7 @@ class Format {
     var tablas:Table;
     var reglas:ValidationRule;
 
-    function new(fmtf:String) {
+    public function new(fmtf:String) {
         trace("Creando un formato");
         // this.fmtf = fmtf;
         // this.fmtfh = File.read(fmtf);

@@ -1,6 +1,5 @@
 
-
---class-path src/
+-cp src/
 --dce full
 
 libteddet.Reader

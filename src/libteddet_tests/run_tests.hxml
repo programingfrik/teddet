@@ -1,0 +1,8 @@
+
+../libteddet/build.hxml
+
+-L utest
+
+-main TestBasics
+
+--interp
