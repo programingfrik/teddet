@@ -6,21 +6,34 @@ import sys.io.FileInput;
 
 @:keep
 class Format {
-    var fmtf:String;
-    var fmtfh:FileInput;
-    var tipoFichero:String;
-    var descripcion:String;
 
-    var tablas:Table;
-    var reglas:ValidationRule;
+    public static var frmtbase(get, null):Format;
 
-    public function new(fmtf:String) {
+    public static function get_frmtbase() {
+        if (frmtbase == null) {
+            frmtbase = new Format();
+        }
+        return frmtbase;
+    }
+
+    var frmtf:String;
+    var frmtfh:FileInput;
+    var name:String;
+    var description:String;
+    var fileType:String;
+    var tableHaveHeaders:Bool;
+
+    var tables:List<Table>;
+
+    var rules:List<ValidationRule>;
+
+    public function new(?frmtf:String) {
         trace("Creando un formato");
-        // this.fmtf = fmtf;
-        // this.fmtfh = File.read(fmtf);
+        this.frmtf = frmtf;
+        // this.frmtfh = File.read(frmtf);
         //
         // try {
-        //     this.fmtfh.readLine();
+        //     this.frmtfh.readLine();
         // } catch(e:haxe.EOF) {
         //
         // }

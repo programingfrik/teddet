@@ -7,11 +7,11 @@ using sys.io.FileInput;
 class Reader {
 
     var file:FileInput;
-    var format:Format;
+    var format:String;
 
-    function new(file:FileInput, ?format:String) {
+    public function new(file:FileInput, ?format:String) {
         this.file = file;
-        // this.format = format;
+        this.format = format;
     }
 
     function read_row() {
@@ -25,5 +25,4 @@ class Reader {
     function read_file() {
 
     }
-
 }

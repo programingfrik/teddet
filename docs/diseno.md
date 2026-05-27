@@ -17,29 +17,39 @@ Estoy usando como ejemplo de como debería ser implementada una librería como e
 Diseño libteddet
 ================
 
-Reader
-------
+The chicken and egg problem of libteddet
+----------------------------------------
 
-Un objeto que se va a encargar de leer del fichero en cuestión.
+Libteddet wants to re-use the same functions it uses to read delimited files and fixed width files with its own file formats. But there is a little problem, to read a file and validate it, it needs the format of a file, to read a format, it needs the format's format file, that is also needed to read itself. So how is this problem solved. One idea is to have the format's format preloaded as literal values inside the library, another idea is to have a minimum amount of the relevant information to use it as a bootstrap, another one is to load the format's format without any check and have some special fuction to read it. This last solution is the one I'm choosing.
 
-Se crea usando el fichero de formato.
+Classes and its roles
+---------------------
 
-Una vez creado el fichero se puede iterar por el.
+### TDReader ###
 
-Se puede leer registro a registro.
+The class that has the functions to read the files.
 
-Según se va leyendo se hacen las validaciones de acuerdo con los tipos y las validaciones.
+It can have a Format object to help it know better the file that its reading.
 
-Writer
-------
+A TDReader can be used to iterate through a File.
 
-Un objeto que se va a encargar de escribir el fichero en cuestión.
+The file can be read line by line, each line a row.
 
-Se crea usando el fichero de formato.
+If a TDFormat was provided to the TDReader, and it has validation rules, while it reads a file the TDReader object can check that the file complies with the types and settings expressed in the format as well as the validation rules.
 
-Una vez creado el objeto, solo hay que ir pasandole los valores que van a formar un registro.
+### TDWriter ###
 
-Se hace validación de los valores según se van pasando de acuerdo con los tipos y las reglas.
+The class that has the functions to write a File
+
+It can have a Formate object to help it know better the file that is writing.
+
+Once the class is created, the values pass to it will form a register.
+
+The TDWriter validates the data that it will write against the TDFormat information, tipes, lengths, fields, and validation rules.
+
+### TDFormat ###
+
+The class that contains the information that describes a file format.
 
 
 Diseño teddetgui

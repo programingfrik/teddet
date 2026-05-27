@@ -3,9 +3,12 @@ package libteddet;
 
 @:keep
 class Column {
-    var nombre:String;
-    var tipo:String;
-    var longitud:Int;
+    var name:String;
+    var type:String;
+    var length:Int;
     var precision:Int;
-    var descripcion:String;
+    var fill:String;
+    var alignment:String;
+    var description:String;
+    var block:Int;
 }

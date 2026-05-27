@@ -1,10 +1,10 @@
-Clave, Valor
-Nombre, Formato de Formato
-Descripcion, Fichero usado para describir el formato de un fichero
-Tipo, SeparadoPorComa
-TablasConEncabezado, Si
+, Value
+Name, Format's Format
+Description, File used to describe the format of a file that describe a format.
+FileType, Delimited
+TablesHaveHeaders, Yes
 
-Nombre, Tipo, Longitud, Precision, Relleno, Alineacion, Descripcion, Bloque
+Name, Type, Length, Precision, Fill, Alignment, Description, Block
 Clave, Texto, , , , izquierda, Clave para configuración del formato, 1
 Valor, Texto, , , , izquierda, Valor para la clave de configuración correspondiente, 1
 Nombre, Texto, , , , izquierda, "Nombre de una columna en una tabla o bloque, tienen que ser nombres únicos de columnas.", 2
@@ -21,7 +21,7 @@ Regla, Texto, , , , izquierda, Tipo de regla que usa la validación., 3
 Parametros, Texto, , , , izquierda, Más parámetros para la validación., 3
 Comentario, Tetxo, , , , izquierda, Un comentario para explicar porque se usa la regla en este formato., 3
 
-Bloque, Campo, Regla, Parametros, Comentario
+Block, Field, Rule, Parameters, Comment
 1, Clave, NoVacio, ,
 2, Nombre, NoVacio, ,
 2, Nombre, Unico, ,
