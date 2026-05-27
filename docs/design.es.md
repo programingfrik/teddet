@@ -3,6 +3,8 @@ TEDDET Diseño
 
 texto es data, data es texto.
 
+[English version](docs/design.md)
+
 Este proyecto son 2 cosas: 
  - Una librería para extraer data de ficheros de texto, csv, columnas de anchofijo, otros? y para poner data en forma de esos formatos de texto, esta librería está construida sobre Haxe, de forma que esté disponible para diferentes lenguajes y plataformas, inicialmente, python y csharp.
  - También es una interface gráfica hecha en python que permita abrir, leer, manipular y crear formatos de ficheros de texto y abrir, leer, manipular y crear ficheros de texto con data, en esos formatos.

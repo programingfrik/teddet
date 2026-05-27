@@ -3,7 +3,7 @@ TEDDET
 
 Texto Es Data <-> Data Es Texto
 
-[Versión en español](README.es.md)
+[English version](README.md)
 
 Esto es un proyecto para crear una herramienta para abrir ficheros de texto en forma de data y escribir ficheros data en ficheros de texto. 
 
@@ -16,6 +16,6 @@ Este proyecto tiene dos partes:
 Otros documentos con más información
 ------------------------------------
 
-[Requirements document](docs/requirements.md)
+[Documento de requerimientos](docs/requirements.es.md)
 
-[Design document](docs/design.md)
+[Documento de diseño](docs/design.es.md)
