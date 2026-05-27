@@ -3,13 +3,13 @@ TEDDET Requerimientos
 
 [Versión en español](docs/requirements.es.md)
 
-Estos requerimientos son la lista de funcionalidades que se espera que tenga la solución que surja de este proyecto.
+This requirements, are the list of functionalities that are expected from the solution that this project will produce.
 
-La idea es que los requerimientos vayan de lo más básico, de la funcionalidad más necesaria a las funcionalidades de uso menos frecuente.
+The idea is that the requirements go from the basics, the most needed functionalities to the less frequent used ones.
 
-El orden de las cosas para hacer un cambio es primero conciliar los nuevos requerimientos con los requerimientos previos en este documento, luego hacer cambios al diseño y luego hacer cambios a los fuentes.
+The order of the things touch to make a change is first reconcile the new requirements with the previous ones in this document, then make changes in the design and then make the changes in the files of the source code.
 
-Este proyecto consiste en 2 subpartes. El núcleo, la parte base, una librería que sirva para manejar ficheros de texto tanto de columna de ancho fijo como ficheros separados por comas, a través de formatos predefinidos. La segunda parte una interfaz gráfica para elaborar formatos y también para trabajar con ficheros en base a esos formatos. Trabajar es crearlos y editarlos pero también convertirlos a otros formatos.
+This project consists of 2 sub-parts. The core, the base part, a library that facilitates text files management, fixed with ones, as well as delimited ones, through predefine file formats. The second part a graphical interface to elaborate, formats and also to work with files in those formats. Work with this files means create them, edit, but also convert them to other formats.
 
 
 Requerimientos para la librería (libteddet)
@@ -55,6 +55,7 @@ Esta es la parte de la librería que es el núcleo del proyecto. Este núcleo va
 Para el futuro
 
 - La librería puede manejar ficheros de gran volúmen, ej: 9GB, 10GB evitando cargar toda la data en memoria al mismo tiempo, cargando partes del fichero a demanda según el usuario se va moviendo por el texto.
+- The library can be used to parse text streams that behave like fixed width text files, just intead of files, network data packages.
 - Se puede poner en el formato la codificación de texto que usa el fichero.
 - Soporta data en formato XML.
 - Soporta data en formato json.

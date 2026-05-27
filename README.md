@@ -16,6 +16,6 @@ Este proyecto tiene dos partes:
 Otros documentos con más información
 ------------------------------------
 
-[Requirements document](docs/requirements.md)
-
-[Design document](docs/design.md)
+Just in case that the information presented in this README is not enough you can read this other two files:
+ - [Requirements document](docs/requirements.md)
+ - [Design document](docs/design.md)
