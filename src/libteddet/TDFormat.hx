@@ -5,13 +5,13 @@ import sys.io.File;
 import sys.io.FileInput;
 
 @:keep
-class Format {
+class TDFormat {
 
-    public static var frmtbase(get, null):Format;
+    public static var frmtbase(get, null):TDFormat;
 
     public static function get_frmtbase() {
         if (frmtbase == null) {
-            frmtbase = new Format();
+            frmtbase = loadBaseFormat();
         }
         return frmtbase;
     }
@@ -22,6 +22,7 @@ class Format {
     var description:String;
     var fileType:String;
     var tableHaveHeaders:Bool;
+    var delimiter:String;
 
     var tables:List<Table>;
 
@@ -37,6 +38,11 @@ class Format {
         // } catch(e:haxe.EOF) {
         //
         // }
+    }
+
+    static function loadBaseFormat():TDFormat {
+        // "formats_format.csv"
+        return null;
     }
 
     function addtable() {

@@ -1,7 +1,9 @@
-TEDDET Diseño
+TEDDET Design
 =============
 
 texto es data, data es texto.
+
+is the spanish for text is data, data is text.
 
 [Versión en español](docs/design.es.md)
 
@@ -16,7 +18,7 @@ La interface gráfica de usuario está hecha en python usando tk inter, tratando
 Estoy usando como ejemplo de como debería ser implementada una librería como esta la librería estandar de python para manejar csv [https://docs.python.org/3/library/csv.html].
 
 
-Diseño libteddet
+libteddet design
 ================
 
 The chicken and egg problem of libteddet
@@ -39,6 +41,16 @@ The file can be read line by line, each line a row.
 
 If a TDFormat was provided to the TDReader, and it has validation rules, while it reads a file the TDReader object can check that the file complies with the types and settings expressed in the format as well as the validation rules.
 
+Properties:
+ - file
+ - format
+ 
+Functions:
+ - new
+ - read_row()
+ - read_table()
+ - read_file()
+
 ### TDWriter ###
 
 The class that has the functions to write a File
@@ -49,12 +61,37 @@ Once the class is created, the values pass to it will form a register.
 
 The TDWriter validates the data that it will write against the TDFormat information, tipes, lengths, fields, and validation rules.
 
+Properties:
+ - file
+ - format
+ 
+ Functions:
+ - new
+ - write_row()
+ - write_table()
+ - write_file()
+ 
 ### TDFormat ###
 
 The class that contains the information that describes a file format.
 
+Properties:
+ - frmtbase
+ - frmtf
+ - frmtfh
+ - name
+ - description
+ - fileType
+ - tableHaveHeaders
+ - tables
+ - rules
+ 
+ Functions:
+ - new
 
-Diseño teddetgui
+A format can be represented as a multi table coma delimited text file.
+
+teddetgui design
 ================
 
 La pantalla principal es una ventana con una cuadrícula, un espacio para poner las tablas de texto.

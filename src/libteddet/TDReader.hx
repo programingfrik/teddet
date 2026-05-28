@@ -4,7 +4,7 @@ package libteddet;
 using sys.io.FileInput;
 
 @:keep
-class Reader {
+class TDReader {
 
     var file:FileInput;
     var format:String;

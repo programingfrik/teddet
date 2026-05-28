@@ -2,9 +2,9 @@
 -cp src/
 --dce full
 
-libteddet.Reader
-libteddet.Writer
-libteddet.Format
+libteddet.TDReader
+libteddet.TDWriter
+libteddet.TDFormat
 libteddet.Table
 libteddet.Column
 libteddet.ValidationRule

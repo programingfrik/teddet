@@ -3,7 +3,7 @@ package libteddet;
 
 @:keep
 class Table {
-    var format:Format;
+    var format:TDFormat;
     var position:Int;
     var colmuns:List<Column>;
 }
