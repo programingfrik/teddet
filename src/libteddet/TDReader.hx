@@ -7,9 +7,9 @@ using sys.io.FileInput;
 class TDReader {
 
     var file:FileInput;
-    var format:String;
+    var format:TDFormat;
 
-    public function new(file:FileInput, ?format:String) {
+    public function new(file:FileInput, ?format:TDFormat) {
         this.file = file;
         this.format = format;
     }

@@ -7,15 +7,15 @@ is the spanish for text is data, data is text.
 
 [Versión en español](docs/design.es.md)
 
-Este proyecto son 2 cosas: 
- - Una librería para extraer data de ficheros de texto, csv, columnas de anchofijo, otros? y para poner data en forma de esos formatos de texto, esta librería está construida sobre Haxe, de forma que esté disponible para diferentes lenguajes y plataformas, inicialmente, python y csharp.
- - También es una interface gráfica hecha en python que permita abrir, leer, manipular y crear formatos de ficheros de texto y abrir, leer, manipular y crear ficheros de texto con data, en esos formatos.
+This project is 2 things:
+ - A library for extracting data from text files, csv, fixed width columns, others? and to put data in the form of text, this library is build on Haxe, so this source code is available for diferent languages and platforms, initialy, python and csharp.
+ - It is also a graphical interface build on python that allows to open, read, manipulate and create text file formats and open, read, manipulate and create text files with data, on those formats.
 
-La librería está hecha en Haxe. Inicialmente se trans-compila a python y a csharp.
+The graphical interface for the users is build on python using tkinter, trying that it looks the most modern possible, usnig the "modern" version and the less ugly possible, but really prioritizing the functionality.
 
-La interface gráfica de usuario está hecha en python usando tk inter, tratando de que se vea lo más moderno posible, usando la versión "moderna" y lo menos feito posible, pero en realidad priorizando lo funcional.
-
-Estoy usando como ejemplo de como debería ser implementada una librería como esta la librería estandar de python para manejar csv [https://docs.python.org/3/library/csv.html].
+I'm using various projects as examples and as inspiration:
+ - [https://docs.python.org/3/library/csv.html] as an example of a library that implements means to manage a csv file.
+ - [https://github.com/python/cpython/tree/3.14/Lib/idlelib] as an example of a user interface build on tkinter.
 
 
 libteddet design
@@ -33,13 +33,22 @@ Classes and its roles
 
 The class that has the functions to read the files.
 
-It can have a Format object to help it know better the file that its reading.
+It can have a TDFormat object with its full information to help it know better the file that its reading, or it can have a small sub set of the TDFormat information, or it can try to guess the file format.
 
-A TDReader can be used to iterate through a File.
+A text file can have more than one table. One can iterate over the tables.
 
-The file can be read line by line, each line a row.
+A TDReader can be used to iterate through the rows of each table in a text file.
+
+Also the TDReader allows to access each line or row, one by one.
 
 If a TDFormat was provided to the TDReader, and it has validation rules, while it reads a file the TDReader object can check that the file complies with the types and settings expressed in the format as well as the validation rules.
+
+The minimum information that the TDDataReader needs from a TDFormat is:
+ - The file type
+ - If its a delimited file, it needs the delimiter.
+ - If its a fixed width file, it needs the length of each field.
+ - If it has one table or multiple tables.
+ - Does the file has headers or not.
 
 Properties:
  - file
@@ -74,6 +83,8 @@ Properties:
 ### TDFormat ###
 
 The class that contains the information that describes a file format.
+
+A format can be read from a file or it can be build from scratch programaticaly.
 
 Properties:
  - frmtbase

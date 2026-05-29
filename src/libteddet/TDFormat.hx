@@ -3,6 +3,21 @@ package libteddet;
 
 import sys.io.File;
 import sys.io.FileInput;
+import libteddet.TDReader;
+
+enum FileType {
+    Delimited;
+    FixedWidth;
+}
+
+enum Quoting {
+    ALL;
+    MINIMAL;
+    NONNUMERIC;
+    NONE;
+    NOTNULL;
+    STRINGS;
+}
 
 @:keep
 class TDFormat {
@@ -20,9 +35,19 @@ class TDFormat {
     var frmtfh:FileInput;
     var name:String;
     var description:String;
-    var fileType:String;
-    var tableHaveHeaders:Bool;
+
+    var fileType:FileType;
+
+    var multiTable:Bool;
+    var tablesHaveHeaders:Bool;
     var delimiter:String;
+    var quoteChar:String;
+    var escapeChar:String;
+
+    var quoting:Quoting;
+
+    var lineTerminator:String;
+    var coding:String;
 
     var tables:List<Table>;
 
@@ -41,7 +66,21 @@ class TDFormat {
     }
 
     static function loadBaseFormat():TDFormat {
-        // "formats_format.csv"
+        var tempfrmt = new TDFormat();
+
+        tempfrmt.name = "Minimal formats_format";
+        tempfrmt.description = "Minimal format for reading formats_format";
+        tempfrmt.fileType = FileType.Delimited;
+        tempfrmt.multiTable = true;
+        tempfrmt.tablesHaveHeaders = true;
+        tempfrmt.delimiter = ",";
+        tempfrmt.quoteChar = "\"";
+        tempfrmt.escapeChar = "\\";
+        tempfrmt.lineTerminator = "\n\r";
+
+        var fffh = File.read("formats_format.csv");
+        var reader = new TDReader(fffh, tempfrmt);
+
         return null;
     }
 
