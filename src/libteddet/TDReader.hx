@@ -14,15 +14,16 @@ class TDReader {
         this.format = format;
     }
 
-    function read_row() {
-
+    public function read_row():TDDataRow {
+        
+        return null;
     }
 
-    function read_table() {
-
+    public function read_table():TDDataTable {
+        return null;
     }
 
-    function read_file() {
-
+    public function read_file():TDDataFile {
+        return null;
     }
 }

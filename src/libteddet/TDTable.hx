@@ -2,8 +2,8 @@
 package libteddet;
 
 @:keep
-class Table {
+class TDTable {
     var format:TDFormat;
     var position:Int;
-    var colmuns:List<Column>;
+    var colmuns:List<TDColumn>;
 }

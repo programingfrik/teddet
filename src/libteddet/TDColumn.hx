@@ -1,10 +1,19 @@
 
 package libteddet;
 
+enum ColumnType {
+    Text;
+    Integer;
+    Decimal;
+    Date;
+    Time;
+    DateTime;
+}
+
 @:keep
-class Column {
+class TDColumn {
     var name:String;
-    var type:String;
+    var type:ColumnType;
     var length:Int;
     var precision:Int;
     var fill:String;

@@ -4,6 +4,9 @@ package libteddet;
 import sys.io.File;
 import sys.io.FileInput;
 import libteddet.TDReader;
+import sys.FileSystem;
+import haxe.Exception;
+import haxe.macro.Format;
 
 enum FileType {
     Delimited;
@@ -31,6 +34,8 @@ class TDFormat {
         return frmtbase;
     }
 
+    public static var basefff:String = "formats_format.csv";
+
     var frmtf:String;
     var frmtfh:FileInput;
     var name:String;
@@ -40,7 +45,8 @@ class TDFormat {
 
     var multiTable:Bool;
     var tablesHaveHeaders:Bool;
-    var delimiter:String;
+    var rowDelimiter:String;
+    var tableDelimiter:String;
     var quoteChar:String;
     var escapeChar:String;
 
@@ -49,9 +55,9 @@ class TDFormat {
     var lineTerminator:String;
     var coding:String;
 
-    var tables:List<Table>;
+    var tables:List<TDTable>;
 
-    var rules:List<ValidationRule>;
+    var rules:List<TDValidationRule>;
 
     public function new(?frmtf:String) {
         trace("Creando un formato");
@@ -69,7 +75,8 @@ class TDFormat {
         var tempfrmt = new TDFormat();
 
         tempfrmt.name = "Minimal formats_format";
-        tempfrmt.description = "Minimal format for reading formats_format";
+        tempfrmt.description =
+            "Minimal format for reading formats_format";
         tempfrmt.fileType = FileType.Delimited;
         tempfrmt.multiTable = true;
         tempfrmt.tablesHaveHeaders = true;
@@ -78,8 +85,14 @@ class TDFormat {
         tempfrmt.escapeChar = "\\";
         tempfrmt.lineTerminator = "\n\r";
 
-        var fffh = File.read("formats_format.csv");
+        if (! FileSystem.exists(basefff)) {
+            throw new Exception('Error: $basefff doesn\'t exists, '
+                                + 'thats a serious thing.');
+        }
+        var fffh = File.read(basefff);
         var reader = new TDReader(fffh, tempfrmt);
+
+        var frmtData = reader.read_file();
 
         return null;
     }

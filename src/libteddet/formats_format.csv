@@ -6,28 +6,28 @@ TablesHaveHeaders, Yes
 Delimiter, ","
 
 Name, Type, Length, Precision, Fill, Alignment, Description, Block
-Clave, Texto, , , , izquierda, Clave para configuración del formato, 1
-Valor, Texto, , , , izquierda, Valor para la clave de configuración correspondiente, 1
-Nombre, Texto, , , , izquierda, "Nombre de una columna en una tabla o bloque, tienen que ser nombres únicos de columnas.", 2
-Tipo, Texto, , , , izquierda, El tipo de dato de la columna en cuestión, 2
-Longitud, Entero, , , , izquierda, Cantidad de caracteres o dígitos que puede tener la columna, 2
-Precision, Entero, , , , , izquierda, Para los números decimales dice el número de digitos después del punto., 2
-Relleno, Texto, , , , izquierda, Indica con que caracter se rellenan las posiciones que quedan vacías., 2
-Alineacion, Texto, , , , izquierda, Dice el lado al que va alineado el campo., 2
-Descripcion, Texto, , , , izquierda, Descripción de la columna, su función en el formato., 2
-Bloque, Entero, , , , izquierda, "Un número de bloque dentro del fichero, la mayoría de los CSV tienen un solo bloque, pero para nosotros bien podrían tener más de una separada por una linea en blanco u otra identificación.", 2
-Bloque, entero, , , , izquierda, Bloque el que se encuentra el campo al que se hace referencia., 3
-Campo, Texto, , , , izquierda, Hace referencia a las columnas declaradas en el bloque anterior., 3
-Regla, Texto, , , , izquierda, Tipo de regla que usa la validación., 3
-Parametros, Texto, , , , izquierda, Más parámetros para la validación., 3
-Comentario, Tetxo, , , , izquierda, Un comentario para explicar porque se usa la regla en este formato., 3
+Propertie, Text, , , , left, Propertie for the configuration of the format, 1
+Value, Text, , , , left, Value for the matching propertie, 1
+Name, Text, , , , left, "Name of the column in a table or block, names have to be unique in the block", 2
+Type, Text, , , , left, The type of the column, 2
+Length, Entero, , , , left, Quantity of the characters or digits that this column can acomodate, 2
+Precision, Entero, , , , , left, For decimal numbers, it says how many digits beyond the decimal point can there be, 2
+Fill, Text, , , , left, Indicates with wich character will be filled the empty space in the field, 2
+Alignment, Text, , , , left, It says the side that the field will be align to, 2
+Description, Text, , , , left, Column description, it says it function in the format, 2
+Block, Entero, , , , left, "A number of block of the file, most of the delimited files have just one block, but for us it could have more than one separated by a blank line or other delimiter", 2
+Block, entero, , , , left, Block in wich the field referenced can be found, 3
+Field, Text, , , , left, Makes reference to the column declared in the previous block, 3
+Rule, Text, , , , left, Type of rule used by the validation, 3
+Parameters, Text, , , , left, More parameters for the validation, 3
+Comment, Text, , , , left, A comment to explain why this validation rule is being used in this format, 3
 
 Block, Field, Rule, Parameters, Comment
-1, Clave, NoVacio, ,
-2, Nombre, NoVacio, ,
-2, Nombre, Unico, ,
-2, Tipo, NoVacio, ,
-2, Bloque, NoVacio, ,
-3, Bloque, NoVacio, ,
-3, Campo, NoVacio, ,
-3, Regla, NoVacio, ,
+1, Clave, NonEmpty, ,
+2, Nombre, NonEmpty, ,
+2, Nombre, Unique, ,
+2, Tipo, NonEmpty, ,
+2, Bloque, NonEmpty, ,
+3, Bloque, NonEmpty, ,
+3, Campo, NonEmpty, ,
+3, Regla, NonEmpty, ,

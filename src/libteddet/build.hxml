@@ -2,10 +2,12 @@
 -cp src/
 --dce full
 
-libteddet.TDReader
-libteddet.TDWriter
+libteddet.TDColumn
+libteddet.TDDataFile
+libteddet.TDDataRow
+libteddet.TDDataTable
 libteddet.TDFormat
-libteddet.Table
-libteddet.Column
-libteddet.ValidationRule
-libteddet.FicheroTextoData
+libteddet.TDReader
+libteddet.TDTable
+libteddet.TDValidationRule
+libteddet.TDWriter

@@ -7,9 +7,9 @@ using sys.io.FileOutput;
 class TDWriter {
 
     var file:FileOutput;
-    var format:String;
+    var format:TDFormat;
 
-    public function new(file:FileOutput, ?format:String) {
+    public function new(file:FileOutput, ?format:TDFormat) {
 
     }
 
