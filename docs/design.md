@@ -102,6 +102,20 @@ Properties:
 
 A format can be represented as a multi table coma delimited text file.
 
+Use cases
+---------
+
+This section describes various use cases and how the library is supossed to behave on those cases.
+
+### Open a file with a known format ###
+
+- The user creates an instance of TDFormat passing the format file name as a string to the constructor.
+- The user opens for reading the file that it wants to read.
+- The user creates an instance of TDReader passing the opened file handle from the previous step and the instance of TDFormat from the previous step.
+- The user uses the TDReader instance to read the file all that it wants using read\_row, read\_table, or read\_file, or a combination of all the previous.
+- The user closes the file handle.
+- The end.
+
 teddetgui design
 ================
 

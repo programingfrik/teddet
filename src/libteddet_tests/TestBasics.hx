@@ -13,6 +13,7 @@ class TestBasics extends utest.Test {
         // Reader rdpago = Reader(pago, fmtpagoc);
         // reg = rdpago.read_row();
         // Assert.equals(reg["cuenta"], 1234123412341234);
+        // pago.close();
         Assert.isTrue(true);
     }
 

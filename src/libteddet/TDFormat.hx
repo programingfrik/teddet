@@ -7,6 +7,7 @@ import libteddet.TDReader;
 import sys.FileSystem;
 import haxe.Exception;
 import haxe.macro.Format;
+import haxe.io.Eof;
 
 enum FileType {
     Delimited;
@@ -60,15 +61,15 @@ class TDFormat {
     var rules:List<TDValidationRule>;
 
     public function new(?frmtf:String) {
-        trace("Creando un formato");
         this.frmtf = frmtf;
-        // this.frmtfh = File.read(frmtf);
-        //
-        // try {
-        //     this.frmtfh.readLine();
-        // } catch(e:haxe.EOF) {
-        //
-        // }
+        this.frmtfh = File.read(frmtf);
+        var reader = new TDReader(frmtfh);
+        try {
+            trace(reader.read_row());
+        } catch(e:Eof) {
+            trace('Error: $e');
+        }
+        this.frmtfh.close();
     }
 
     static function loadBaseFormat():TDFormat {

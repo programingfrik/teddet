@@ -6,17 +6,18 @@ using sys.io.FileInput;
 @:keep
 class TDReader {
 
-    var file:FileInput;
+    var subject:FileInput;
     var format:TDFormat;
 
-    public function new(file:FileInput, ?format:TDFormat) {
-        this.file = file;
+    public function new(subject:FileInput, ?format:TDFormat) {
+        this.subject = subject;
         this.format = format;
     }
 
     public function read_row():TDDataRow {
+        var result = new TDDataRow();
         
-        return null;
+        return result;
     }
 
     public function read_table():TDDataTable {
