@@ -80,7 +80,8 @@ class TDFormat {
         tempfrmt.fileType = FileType.Delimited;
         tempfrmt.multiTable = true;
         tempfrmt.tablesHaveHeaders = true;
-        tempfrmt.delimiter = ",";
+        tempfrmt.rowDelimiter = ",";
+        tempfrmt.tableDelimiter = "\n\n";
         tempfrmt.quoteChar = "\"";
         tempfrmt.escapeChar = "\\";
         tempfrmt.lineTerminator = "\n\r";
