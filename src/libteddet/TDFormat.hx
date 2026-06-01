@@ -61,6 +61,7 @@ class TDFormat {
     var rules:List<TDValidationRule>;
 
     public function new(?frmtf:String) {
+        trace("New format instance");
         this.frmtf = frmtf;
         this.frmtfh = File.read(frmtf);
         var reader = new TDReader(frmtfh);
@@ -94,7 +95,9 @@ class TDFormat {
         var fffh = File.read(basefff);
         var reader = new TDReader(fffh, tempfrmt);
 
-        var frmtData = reader.read_file();
+        // reader
+
+        // var frmtData = reader.read_file();
 
         return null;
     }
