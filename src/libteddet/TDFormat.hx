@@ -30,7 +30,7 @@ class TDFormat {
 
     public static function get_frmtbase() {
         if (frmtbase == null) {
-            frmtbase = loadBaseFormat();
+            frmtbase = loadFormatsFormat();
         }
         return frmtbase;
     }
@@ -39,67 +39,80 @@ class TDFormat {
 
     var frmtf:String;
     var frmtfh:FileInput;
-    var name:String;
-    var description:String;
+    public var name:String;
+    public var description:String;
 
-    var fileType:FileType;
+    public var fileType:FileType;
 
-    var multiTable:Bool;
-    var tablesHaveHeaders:Bool;
-    var rowDelimiter:String;
-    var tableDelimiter:String;
-    var quoteChar:String;
-    var escapeChar:String;
+    public var multiTable:Bool;
+    public var tablesHaveHeaders:Bool;
+    public var fieldDelimiter:String;
+    public var rowDelimiter:String;
+    public var tableDelimiter:String;
+    public var quoteChar:String;
+    public var escapeChar:String;
 
-    var quoting:Quoting;
+    public var quoting:Quoting;
 
-    var lineTerminator:String;
-    var coding:String;
+    public var coding:String;
 
-    var tables:List<TDTable>;
+    public var tables:List<TDTable>;
 
-    var rules:List<TDValidationRule>;
+    public var rules:List<TDValidationRule>;
 
     public function new(?frmtf:String) {
         trace("New format instance");
-        this.frmtf = frmtf;
-        this.frmtfh = File.read(frmtf);
-        var reader = new TDReader(frmtfh);
-        try {
-            trace(reader.read_row());
-        } catch(e:Eof) {
-            trace('Error: $e');
+
+        if (frmtf != null) {
+            this.frmtf = frmtf;
+            this.frmtfh = File.read(frmtf);
+            var reader = new TDReader(frmtfh);
+            try {
+                trace(reader.read_row());
+            } catch(e:Eof) {
+                trace('Error: $e');
+            }
+            this.frmtfh.close();
         }
-        this.frmtfh.close();
     }
 
-    static function loadBaseFormat():TDFormat {
-        var tempfrmt = new TDFormat();
+    public static function getBaseFormat():TDFormat {
+        trace("getBaseFormat");
+        var format = new TDFormat();
 
-        tempfrmt.name = "Minimal formats_format";
-        tempfrmt.description =
+        format.name = "Base format";
+        format.description = "Minimal format with generic default values";
+        format.fileType = FileType.Delimited;
+        format.multiTable = false;
+        format.tablesHaveHeaders = true;
+        format.fieldDelimiter = ",";
+        format.rowDelimiter = "\r\n";
+        format.tableDelimiter = "\n\n";
+        format.quoteChar = "\"";
+        format.escapeChar = "\\";
+
+        return format;
+    }
+
+    public static function loadFormatsFormat():TDFormat {
+        trace("loadFormatsFormat");
+        var format = getBaseFormat();
+        format.name = "Minimal formats_format";
+        format.description =
             "Minimal format for reading formats_format";
-        tempfrmt.fileType = FileType.Delimited;
-        tempfrmt.multiTable = true;
-        tempfrmt.tablesHaveHeaders = true;
-        tempfrmt.rowDelimiter = ",";
-        tempfrmt.tableDelimiter = "\n\n";
-        tempfrmt.quoteChar = "\"";
-        tempfrmt.escapeChar = "\\";
-        tempfrmt.lineTerminator = "\n\r";
+        format.multiTable = true;
 
         if (! FileSystem.exists(basefff)) {
             throw new Exception('Error: $basefff doesn\'t exists, '
                                 + 'thats a serious thing.');
         }
         var fffh = File.read(basefff);
-        var reader = new TDReader(fffh, tempfrmt);
+        var reader = new TDReader(fffh, format);
 
         // reader
 
         // var frmtData = reader.read_file();
-
-        return null;
+        return format;
     }
 
     function addtable() {
