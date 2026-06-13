@@ -1,7 +1,8 @@
 Propertie, Value
 Name, Format's Format
 Description, File used to describe the format of a file that describe a format.
-FileType, multi-table-delimited
+FileType, delimited
+MultiTable, Yes
 TablesHaveHeaders, Yes
 Delimiter, ","
 

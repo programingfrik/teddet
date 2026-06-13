@@ -53,9 +53,9 @@ The minimum information that the TDDataReader needs from a TDFormat is:
 Properties:
  - file
  - format
- 
+
 Functions:
- - new
+ - new()
  - read_row()
  - read_table()
  - read_file()
@@ -73,13 +73,13 @@ The TDWriter validates the data that it will write against the TDFormat informat
 Properties:
  - file
  - format
- 
+
  Functions:
- - new
+ - new()
  - write_row()
  - write_table()
  - write_file()
- 
+
 ### TDFormat ###
 
 The class that contains the information that describes a file format.
@@ -88,19 +88,52 @@ A format can be read from a file or it can be build from scratch programaticaly.
 
 Properties:
  - frmtbase
+
+Variables:
+ - basefff
  - frmtf
  - frmtfh
  - name
  - description
  - fileType
- - tableHaveHeaders
+ - multiTable
+ - tablesHaveHeaders
+ - fieldDelimiter
+ - rowDelimiter
+ - tableDelimiter
+ - quoteChar
+ - escapeChar
+ - quoting
+ - coding
  - tables
  - rules
- 
+
  Functions:
- - new
+ - new(?frmtf)
+ - getBaseFormat()
+ - loadFormatsFormat()
 
 A format can be represented as a multi table coma delimited text file.
+
+When you instatiate TDFormat and send it a format file path as a parameter the format has to be read and check against the formats format, wich is loaded using a base simple format from the function getBaseFormat
+
+### TDTable ###
+
+### TDColumn ###
+
+### TDDataFile ###
+
+### TDDataTable ###
+
+### TDDataRow ###
+
+### TDFileType ###
+
+### TDFTDelimited ###
+
+### TDFTFixedWidth ###
+
+### TDValidationRule ###
 
 Use cases
 ---------

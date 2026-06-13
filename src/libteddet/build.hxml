@@ -6,7 +6,10 @@ libteddet.TDColumn
 libteddet.TDDataFile
 libteddet.TDDataRow
 libteddet.TDDataTable
+libteddet.TDFileType
 libteddet.TDFormat
+libteddet.TDFTDelimited
+libteddet.TDFTFixedWidth
 libteddet.TDReader
 libteddet.TDTable
 libteddet.TDValidationRule

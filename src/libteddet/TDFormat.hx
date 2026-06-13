@@ -9,11 +9,6 @@ import haxe.Exception;
 import haxe.macro.Format;
 import haxe.io.Eof;
 
-enum FileType {
-    Delimited;
-    FixedWidth;
-}
-
 enum Quoting {
     ALL;
     MINIMAL;
@@ -42,7 +37,7 @@ class TDFormat {
     public var name:String;
     public var description:String;
 
-    public var fileType:FileType;
+    public var fileType:TDFileType;
 
     public var multiTable:Bool;
     public var tablesHaveHeaders:Bool;
@@ -64,6 +59,7 @@ class TDFormat {
         trace("New format instance");
 
         if (frmtf != null) {
+            trace('Reading format from $frmtf');
             this.frmtf = frmtf;
             this.frmtfh = File.read(frmtf);
             var reader = new TDReader(frmtfh);
@@ -82,7 +78,7 @@ class TDFormat {
 
         format.name = "Base format";
         format.description = "Minimal format with generic default values";
-        format.fileType = FileType.Delimited;
+        format.fileType = new TDFTDelimited(format);
         format.multiTable = false;
         format.tablesHaveHeaders = true;
         format.fieldDelimiter = ",";

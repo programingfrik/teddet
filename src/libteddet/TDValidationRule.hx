@@ -2,6 +2,6 @@
 package libteddet;
 
 @:keep
-class TDValidationRule {
+abstract class TDValidationRule {
 
 }
