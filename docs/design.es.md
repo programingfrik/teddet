@@ -24,8 +24,70 @@ The chicken and egg problem of libteddet
 
 Libteddet wants to re-use the same functions it uses to read delimited files and fixed width files with its own file formats. But there is a little problem, to read a file and validate it, it needs the format of a file, to read a format, it needs the format's format file, that is also needed to read itself. So how is this problem solved. One idea is to have the format's format preloaded as literal values inside the library, another idea is to have a minimum amount of the relevant information to use it as a bootstrap, another one is to load the format's format without any check and have some special fuction to read it. This last solution is the one I'm choosing.
 
-Classes and its roles
----------------------
+Classes y sus roles
+-------------------
+
+Todas las clases tiene el prefijo "TD" iniciales para diferenciarlas de otras clases. TD en este contexto significa "Texto Data".
+
+Las 2 clases más importantes son TDReader y TDWriter que son las clases con las que el usuario va a interactuar más.
+
+Las clases con "data" en el nombre se usan para almacenar data real del usuario.
+
+Las clases con el prefijo "TDFT" son "Texto Data Formato Tipo".
+### TDColumn ###
+
+### TDDataFile ###
+
+### TDDataRow ###
+
+### TDDataTable ###
+
+### TDFileType ###
+
+
+### TDFormat ###
+
+The class that contains the information that describes a file format.
+
+### TDFTDelimited ###
+
+
+Este diagrama es una máquina de estados que ilustra como un fichero delimitado es parseado:
+
+                             +-------------+                                          +------------+                      +-------------+
+        Caracter  <----------|             |----------------------> Delimitador ----->|            |-----> Caracter ----->|             |
+       Contenido             |   Inicio    |                          Cadena          |   Dentro   |        Escape        |  Escapando  |
+            \                |  Contenido  |                                          |   Cadena   |                      |   Caracter  |
+             --------------->|             |<--------------------- Delimitador <------|            |<----- Caracter <-----|             |
+                             +-------------+                    \    Cadena           +------------+      Contenido       +-------------+
+                                    |                            \                       ^     |
+                                    |                             \                      |     |
+             ---------------------------------------------------   \                     |     |
+            /                   |                  |            \   \                    |     V
+           /                    |                  |             \   \                   Caracter
+          V                     V                  V              V   \                 Contenido
+      Delimitador          Delimitador        Delimitador       Final  \
+         Campo              Registro             Tabla         Fichero  \
+          |                     |                  |              |      \
+          |                     |                  |              |       \
+          V                     V                  V              V        \
+    +------------+      +-------------+      +----------+     +-------+     \
+    |            |      |             |      |          |     |       |      \
+    |   Cambio   |      |   Cambio    |      |  Cambio  |     | Final |       |
+    |   Campo    |      |  Registro   |      |  Tabla   |     | Todo  |       |
+    |            |      |             |      |          |     |       |       |
+    +------------+      +-------------+      +----------+     +-------+       |
+          \                     |                  |                          |
+           \                    |                  |                         /
+            \                   |                  |                        /
+             \                  |                  |        Caracter       /
+              -------------------------------------------> Contenido ------
+
+
+
+
+### TDFTFixedWidth ###
+
 
 ### TDReader ###
 
@@ -39,6 +101,13 @@ The file can be read line by line, each line a row.
 
 If a TDFormat was provided to the TDReader, and it has validation rules, while it reads a file the TDReader object can check that the file complies with the types and settings expressed in the format as well as the validation rules.
 
+### TDTable ###
+
+
+### TDValidationRule ###
+
+
+
 ### TDWriter ###
 
 The class that has the functions to write a File
@@ -49,9 +118,6 @@ Once the class is created, the values pass to it will form a register.
 
 The TDWriter validates the data that it will write against the TDFormat information, tipes, lengths, fields, and validation rules.
 
-### TDFormat ###
-
-The class that contains the information that describes a file format.
 
 
 Diseño teddetgui

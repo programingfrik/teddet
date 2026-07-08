@@ -26,59 +26,31 @@ The chicken and egg problem of libteddet
 
 Libteddet wants to re-use the same functions it uses to read delimited files and fixed width files with its own file formats. But there is a little problem, to read a file and validate it, it needs the format of a file, to read a format, it needs the format's format file, that is also needed to read itself. So how is this problem solved. One idea is to have the format's format preloaded as literal values inside the library, another idea is to have a minimum amount of the relevant information to use it as a bootstrap, another one is to load the format's format without any check and have some special fuction to read it. This last solution is the one I'm choosing.
 
-Classes and its roles
----------------------
+Classes and their roles
+-----------------------
 
-### TDReader ###
+All classes are prefixed with the "TD" initials to diferenciate them from other classes. TD in this context means "Text Data".
 
-The class that has the functions to read the files.
+The 2 most important classes are TDReader and TDWriter that are the clases that the user will interacte more with.
 
-It can have a TDFormat object with its full information to help it know better the file that its reading, or it can have a small sub set of the TDFormat information, or it can try to guess the file format.
+The clases with "data" in their name are used to store actual user data.
 
-A text file can have more than one table. One can iterate over the tables.
+The clases with the prefix "TDFT" are "Text Data Format Type".
 
-A TDReader can be used to iterate through the rows of each table in a text file.
+### TDColumn ###
 
-Also the TDReader allows to access each line or row, one by one.
 
-If a TDFormat was provided to the TDReader, and it has validation rules, while it reads a file the TDReader object can check that the file complies with the types and settings expressed in the format as well as the validation rules.
+### TDDataFile ###
 
-The minimum information that the TDDataReader needs from a TDFormat is:
- - The file type
- - If its a delimited file, it needs the delimiter.
- - If its a fixed width file, it needs the length of each field.
- - If it has one table or multiple tables.
- - Does the file has headers or not.
 
-Properties:
- - file
- - format
+### TDDataRow ###
 
-Functions:
- - new()
- - read_row()
- - read_table()
- - read_file()
 
-### TDWriter ###
+### TDDataTable ###
 
-The class that has the functions to write a File
 
-It can have a Formate object to help it know better the file that is writing.
+### TDFileType ###
 
-Once the class is created, the values pass to it will form a register.
-
-The TDWriter validates the data that it will write against the TDFormat information, tipes, lengths, fields, and validation rules.
-
-Properties:
- - file
- - format
-
- Functions:
- - new()
- - write_row()
- - write_table()
- - write_file()
 
 ### TDFormat ###
 
@@ -117,23 +89,105 @@ A format can be represented as a multi table coma delimited text file.
 
 When you instatiate TDFormat and send it a format file path as a parameter the format has to be read and check against the formats format, wich is loaded using a base simple format from the function getBaseFormat
 
-### TDTable ###
-
-### TDColumn ###
-
-### TDDataFile ###
-
-### TDDataTable ###
-
-### TDDataRow ###
-
-### TDFileType ###
-
 ### TDFTDelimited ###
+
+
+This diagram is a state machine that ilustrates how a delimited file is parsed:
+
+                             +-------------+                                          +------------+                      +-------------+
+        Content  <-----------|             |-----------------------> String  -------->|            |----->  Escape  ----->|             |
+       Character             |    Start    |                        Delimiter         |   Inside   |       Character      |  Escaping   |
+            \                |   Content   |                                          |   String   |                      |  Character  |
+             --------------->|             |<----------------------- String  <--------|            |<----- Content  <-----|             |
+                             +-------------+                    \   Delimiter         +------------+      Character       +-------------+
+                                    |                            \                       ^     |
+                                    |                             \                      |     |
+             ---------------------------------------------------   \                     |     |
+            /                   |                  |            \   \                    |     V
+           /                    |                  |             \   \                   Content
+          V                     V                  V              V   \                 Character
+        Field               Register             Table           File  \
+      Delimiter             Delimiter          Delimiter         End    \
+          |                     |                  |              |      \
+          |                     |                  |              |       \
+          V                     V                  V              V        \
+    +------------+      +-------------+      +----------+     +-------+     \
+    |            |      |             |      |          |     |       |      \
+    |   Field    |      |   Register  |      |  Table   |     |  All  |       |
+    |   Change   |      |    Change   |      |  Change  |     | Ends  |       |
+    |            |      |             |      |          |     |       |       |
+    +------------+      +-------------+      +----------+     +-------+       |
+          \                     |                  |                          |
+           \                    |                  |                         /
+            \                   |                  |                        /
+             \                  |                  |        Content        /
+              -------------------------------------------> Character ------
+
 
 ### TDFTFixedWidth ###
 
+
+
+### TDReader ###
+
+The class that has the functions to read the files.
+
+It can have a TDFormat object with its full information to help it know better the file that its reading, or it can have a small sub set of the TDFormat information, or it can try to guess the file format.
+
+A text file can have more than one table. One can iterate over the tables.
+
+A TDReader can be used to iterate through the rows of each table in a text file.
+
+Also the TDReader allows to access each line or row, one by one.
+
+If a TDFormat was provided to the TDReader, and it has validation rules, while it reads a file the TDReader object can check that the file complies with the types and settings expressed in the format as well as the validation rules.
+
+The minimum information that the TDDataReader needs from a TDFormat is:
+ - The file type
+ - If its a delimited file, it needs the delimiter.
+ - If its a fixed width file, it needs the length of each field.
+ - If it has one table or multiple tables.
+ - Does the file has headers or not.
+
+Properties:
+ - file
+ - format
+
+Functions:
+ - new()
+ - read_row()
+ - read_table()
+ - read_file()
+
+### TDTable ###
+
+
+
 ### TDValidationRule ###
+
+
+
+### TDWriter ###
+
+The class that has the functions to write a File
+
+It can have a Formate object to help it know better the file that is writing.
+
+Once the class is created, the values pass to it will form a register.
+
+The TDWriter validates the data that it will write against the TDFormat information, tipes, lengths, fields, and validation rules.
+
+Properties:
+ - file
+ - format
+
+ Functions:
+ - new()
+ - write_row()
+ - write_table()
+ - write_file()
+
+
 
 Use cases
 ---------
