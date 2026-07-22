@@ -1,5 +1,5 @@
-TEDDET Requerimientos
-=====================
+TEDDET Requirements
+===================
 
 [Versión en español](docs/requirements.es.md)
 
@@ -7,59 +7,60 @@ This requirements, are the list of functionalities that are expected from the so
 
 The idea is that the requirements go from the basics, the most needed functionalities to the less frequent used ones.
 
-The order of the things touch to make a change is first reconcile the new requirements with the previous ones in this document, then make changes in the design and then make the changes in the files of the source code.
+The order of the things to touch to make a change is, first reconcile the new requirements with the previous ones in this document, then make changes in the design and then make the changes in the files of the source code.
 
 This project consists of 2 sub-parts. The core, the base part, a library that facilitates text files management, fixed with ones, as well as delimited ones, through predefine file formats. The second part a graphical interface to elaborate, formats and also to work with files in those formats. Work with this files means create them, edit, but also convert them to other formats.
 
 
-Requerimientos para la librería (libteddet)
-===========================================
+Requirements for the library (libteddet)
+========================================
 
-Esta es la parte de la librería que es el núcleo del proyecto. Este núcleo va a requerir las siguientes funcionalidades:
+This is the part of the library, that is the core of the project. This core requires the next functionalities:
 
-- La librería tiene que ser escrita en HAXE
-- Apartir de la versión de HAXE tienen que construirse otras versiones
-  - Versión para python
-  - Versión para csharp
-- La librería puede abrir ficheros a partir de un formato.
-- Pueden ser ficheros de texto de columnas de ancho fijo.
-- Pueden ser fichero de texto separados por coma
-- Se puede elegir el formato de las columnas:
-  - Columnas de texto
-  - Columnas de números enteros
-  - Columnas de números decimales con precisión arbitrária elegida por el usuario.
-  - Columnas de fecha y hora.
-  - Columnas con solo fecha.
-  - Columnas con solo hora.
-- Se pueden crear reglas de validación para esos ficheros.
-  - Validar que una columna solo debe contener digitos decimales.
-  - Validar que una columna debe contener un número decimal válido.
-  - Validar que los registros de un fichero de ancho fijo tengan la cantidad de texto esperado y no más y no menos.
-  - Validar que un fichero separado por comas tenga la cantidad de columnas que se esperan, o sea la cantidad de separadores correctos.
-  - Validar que una columna contenga en todos los registros fechas válidas.
-  - Validar que una columna de texto todos los caracteres se puedan codificar en la codificación de texto actual.
-  - Una validación que establezca que una columna no puede estar en blanco.
-  - Una validación que establezca una lista blanca de valores que puede tener una columna.
-  - Una validación que establezca una lista negra de valores que no puede contener una columna.
-  - Una validación que establezca que en una columna todos los registros deben coincidir con una expresión regular.
-- La librería tiene que ir acompañada de un banco de pruebas y de un programita para ejecutar esas pruebas.
-- Un fichero puede tener varios bloques
-- Se le puede pedir al programa que haga un sumario de una o de varias columnas númericas.
-- se le puede pedir al programa que cuente los registros que contiene un fichero en un bloque.
-- La librería hace conversión entre el texto y la data que representa en forma de tipos de datos nativos.
-- La librería debería ser lo más fácil de usar que sea posible (tomar como ejemplo la librería csv de python).
-- El formato de un fichero puede establecer columnas con valores literales fijos.
-- Los ficheros de formato son ficheros que pueden ser manejados por el propio programa.
-- Los ficheros de formato tienen que cumplir con un formato, el formato de los formatos.
+- The library has to be written in HAXE
+- From the HAXE version other versions have to be build
+  - python version
+  - csharp Version
+- The library can open files using a format.
+- Can be fixed width columns text files
+- Can be coma separated text files
+- Formats can be chosen for the columns:
+  - Text columns
+  - Integer columns
+  - Decimal numbers columns with arbitrary precision chosen by the user
+  - Date and time columns
+  - Just date columns
+  - Just time colmuns
+- Validation rules can be created for those files
+  - Validate that a column should only contain decimal digits
+  - Validate that a column should only contain a valid decimal number
+  - Validate that the records of a fixed width file have the amount of text expected and no more and no less.
+  - Validate that a coma separated file has the amount of columns that are expected, meaning the right amount of separators.
+  - Validate that a column contains valid date on all records.
+  - Validate that on a column of text all characters can be encoded in the codec of the current text.
+  - A validation that establishes that a column cant be left blank.
+  - A validation that establishes a white list of values that a column can have.
+  - A validation that establishes a black list of values that a column can't have.
+  - A validation that establishes that all records in a column must match a regular expression.
+- The library must be accompanied by a test set and a program to execute those tests.
+- A file can have vaious blocks.
+- The program can be asked for a sumary of one or various numeric columns
+- The program can be asked for a count of the registers that a file has on a block
+- The library makes convertions between the text and the data that represents in the form of native data types
+- The library should be the easiest to use posible (take as a example the csv standard csv python library)
+- The format of a file can establish columns with fixed literal values
+- The format files are files that can be managed by this own software itself
+- The format files have be made according to a format, the formats format
 
-Para el futuro
 
-- La librería puede manejar ficheros de gran volúmen, ej: 9GB, 10GB evitando cargar toda la data en memoria al mismo tiempo, cargando partes del fichero a demanda según el usuario se va moviendo por el texto.
+For the future
+
+- The library can manage big volume files: example 9GB, 10GB, avoiding loading all the data to memory at the same time, loading parts of the file on demand as the user moves through the text
 - The library can be used to parse text streams that behave like fixed width text files, just intead of files, network data packages.
-- Se puede poner en el formato la codificación de texto que usa el fichero.
-- Soporta data en formato XML.
-- Soporta data en formato json.
-- Que el programa trate de adivinar el formato de un fichero.
+- The format file can contain the character encoding that uses the file.
+- The program supports data on XML format
+- The program supports data on json format
+- The program can try to guess the format of a file.
 
 
 Requerimientos para la interface gráfica (teddetui)

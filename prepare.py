@@ -46,7 +46,8 @@ def com_execute(subject):
     elif subject == "libteddet_tests":
         initpath = projectdir.joinpath("src").relative_to(cwd, walk_up = True)
         path = get_bin_path(hxbin).joinpath(hxbin)
-        hxmlp = projectdir.joinpath("src", "libteddet_tests", "run_tests.hxml").relative_to(cwd, walk_up = True)
+        hxmlp = projectdir.joinpath("src", "libteddet_tests", "run_tests.hxml")\
+                          .relative_to(cwd, walk_up = True)
         args = [path.name, "-p", initpath, hxmlp]
     else:
         print(f"Error: don't know how to execute {subject}")
@@ -120,8 +121,10 @@ def get_paths():
 def main():
     get_paths()
     cliparser = argparse.ArgumentParser()
-    cliparser.add_argument("command", help = "Sub-command that yout want to execute", nargs = "?")
-    cliparser.add_argument("subject", help = "Subject of the command", nargs = "?")
+    cliparser.add_argument(
+        "command", help = "Sub-command that yout want to execute", nargs = "?")
+    cliparser.add_argument(
+        "subject", help = "Subject of the command", nargs = "?")
     args = cliparser.parse_args()
 
     if (args.command in ["execute", "build"]) and (not args.subject):

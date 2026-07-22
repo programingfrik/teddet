@@ -7,7 +7,7 @@ Estos requerimientos son la lista de funcionalidades que se espera que tenga la 
 
 La idea es que los requerimientos vayan de lo más básico, de la funcionalidad más necesaria a las funcionalidades de uso menos frecuente.
 
-El orden de las cosas para hacer un cambio es primero conciliar los nuevos requerimientos con los requerimientos previos en este documento, luego hacer cambios al diseño y luego hacer cambios a los fuentes.
+El orden de las cosas para hacer un cambio es, primero conciliar los nuevos requerimientos con los requerimientos previos en este documento, luego hacer cambios al diseño y luego hacer cambios a los fuentes.
 
 Este proyecto consiste en 2 subpartes. El núcleo, la parte base, una librería que sirva para manejar ficheros de texto tanto de columna de ancho fijo como ficheros separados por comas, a través de formatos predefinidos. La segunda parte una interfaz gráfica para elaborar formatos y también para trabajar con ficheros en base a esos formatos. Trabajar es crearlos y editarlos pero también convertirlos a otros formatos.
 
@@ -15,7 +15,7 @@ Este proyecto consiste en 2 subpartes. El núcleo, la parte base, una librería 
 Requerimientos para la librería (libteddet)
 ===========================================
 
-Esta es la parte de la librería que es el núcleo del proyecto. Este núcleo va a requerir las siguientes funcionalidades:
+Esta es la parte de la librería, que es el núcleo del proyecto. Este núcleo requiere las siguientes funcionalidades:
 
 - La librería tiene que ser escrita en HAXE
 - Apartir de la versión de HAXE tienen que construirse otras versiones
