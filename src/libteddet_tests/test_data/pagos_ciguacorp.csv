@@ -1,17 +1,17 @@
-Clave, Valor
-Nombre, Formato de Pagos Cigua Corp
-Descripcion, Fichero usado para transportar las transacciones de pago de CiguaCorp de su sistema de contabilidad a los operadores que los aplican.
-Tipo, AnchoFijo
-Extencion, pcc
+Properties, Value
+Name, Payments format Cigua Corp
+Description, File used to transport the payment transactions of CiguaCorp of their accounting sistema to the operators that apply them.
+FileType, fixedwidth
+Extention, pcc
 
-Nombre, Tipo, Longitud, Precision, Relleno, Alineacion, Descripcion, Bloque
-id_cliente, Entero, 5, 0, , derecha, Identificación del cliente., 1
-nombre_razon_social, Texto, 100, , , izquierda, Nombre o Razón Social del cliente al que se le paga., 1
-cuenta, Entero, 16, 0, 0, derecha, Cuenta bancaria a la cual hacer el pago., 1
-monto, Decimal, 18, 2, , derecha, Cantidad de dinero a transferir a la cuenta en cuestión., 1
+Name, Type, Length, Precision, Fill, Alignment, Description, Block
+client_id, Integer, 5, 0, , right, Client identification., 1
+name, Text, 100, , , left, Name of the client who recives the payment., 1
+account, Integer, 16, 0, 0, right, Banking account to wich the payment is destined., 1
+amount, Decimal, 18, 2, , right, Amount of money to be transfer to the account., 1
 
-Campo, Regla, Parametros, Comentario
-id_cliente, Unico, ,
-id_cliente, NoVacio, ,
-cuenta, NoVacio, ,
-Monto, NoVacio, ,
+Field, Rule, Parameters, Comment
+client_id, Unique, ,
+client_id, NonEmpty, ,
+account, NonEmpty, ,
+amount, NonEmpty, ,

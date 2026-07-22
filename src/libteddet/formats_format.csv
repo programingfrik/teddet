@@ -11,13 +11,13 @@ Propertie, Text, , , , left, Propertie for the configuration of the format, 1
 Value, Text, , , , left, Value for the matching propertie, 1
 Name, Text, , , , left, "Name of the column in a table or block, names have to be unique in the block", 2
 Type, Text, , , , left, The type of the column, 2
-Length, Entero, , , , left, Quantity of the characters or digits that this column can acomodate, 2
-Precision, Entero, , , , , left, For decimal numbers, it says how many digits beyond the decimal point can there be, 2
+Length, Integer, , , , left, Quantity of the characters or digits that this column can acomodate, 2
+Precision, Integer, , , , , left, For decimal numbers, it says how many digits beyond the decimal point can there be, 2
 Fill, Text, , , , left, Indicates with wich character will be filled the empty space in the field, 2
 Alignment, Text, , , , left, It says the side that the field will be align to, 2
 Description, Text, , , , left, Column description, it says it function in the format, 2
-Block, Entero, , , , left, "A number of block of the file, most of the delimited files have just one block, but for us it could have more than one separated by a blank line or other delimiter", 2
-Block, entero, , , , left, Block in wich the field referenced can be found, 3
+Block, Integer, , , , left, "A number of block of the file, most of the delimited files have just one block, but for us it could have more than one separated by a blank line or other delimiter", 2
+Block, Integer, , , , left, Block in wich the field referenced can be found, 3
 Field, Text, , , , left, Makes reference to the column declared in the previous block, 3
 Rule, Text, , , , left, Type of rule used by the validation, 3
 Parameters, Text, , , , left, More parameters for the validation, 3
