@@ -37,15 +37,18 @@ class about_teddet(Toplevel):
         self.draw_logoPY(cvlogoPY, 5, "#005", "", "")
 
     def rectTS(self, canvas, scale, t, a, b, fill, outline):
-        canvas.create_rectangle((scale * a[0]) + t[0], (scale * a[1]) + t[1],
-                               (scale * b[0]) + t[0], (scale * b[1]) + t[1],
-                               fill = fill, outline = outline)
+        canvas.create_rectangle(
+            (scale * a[0]) + t[0], (scale * a[1]) + t[1],
+            (scale * b[0]) + t[0], (scale * b[1]) + t[1],
+            fill = fill, outline = outline)
 
-    def arcTS(self, canvas, scale, t, a, b, fill, outline, start, extent, style):
-        canvas.create_arc((scale * a[0]) + t[0], (scale * a[1]) + t[1],
-                          (scale * b[0]) + t[0], (scale * b[1]) + t[1],
-                          fill = fill, outline = outline, start = start,
-                          extent = extent, style = style)
+    def arcTS(self, canvas, scale, t, a, b, fill, outline, start,
+              extent, style):
+        canvas.create_arc(
+            (scale * a[0]) + t[0], (scale * a[1]) + t[1],
+            (scale * b[0]) + t[0], (scale * b[1]) + t[1],
+            fill = fill, outline = outline, start = start,
+            extent = extent, style = style)
 
     def draw_T(self, canvas, scale, t, fg, bg):
         t = (scale * t[0], scale * t[1])
