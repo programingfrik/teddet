@@ -2,6 +2,43 @@
 
 import tkinter as tki
 from tkinter import Toplevel
+import math
+
+X = 0
+Y = 1
+
+def rotate_point(p, a):
+    global X, Y
+    prx = p[X] * math.cos(a) - p[Y] * math.sin(a)
+    pry = p[X] * math.sin(a) + p[Y] * math.cos(a)
+    return prx, pry
+
+def normalize(v):
+    global X, Y
+    modulus = math.sqrt(v[X] ** 2 + v[Y] ** 2)
+    vn = v[X] / modulus, v[Y] / modulus
+    return vn
+
+def calc_perpendicular(a, b, h):
+    global X, Y
+
+    # Calculate the middle point between a and b
+    mid = (b[X] + a[X]) / 2, (b[Y] + a[Y]) / 2
+
+    # Calculate the "real vector"
+    rv = b[X] - a[X], b[Y] - a[Y]
+
+    # Normalize the vector
+    nrv = normalize(rv)
+
+    # Rotate 90 degrees, or pi / 2, the normalized real vector
+    rnrv = rotate_point(nrv, 3 * math.pi / 2)
+
+    # The only thing left is multiplicate by h so that it has the
+    # solicitated height and translated to the middlepoint.
+    pv = (rnrv[X] * h) + mid[X], (rnrv[Y] * h) + mid[Y]
+
+    return pv
 
 class about_teddet(Toplevel):
     def __init__(self, parent):
@@ -86,13 +123,18 @@ class about_teddet(Toplevel):
 
 
     def draw_triHX(self, canvas, scale, a, b, c, color):
-        pass
+        canvas.create_polygon(*list(a + b + c),
+                              fill = color, width = 0)
 
     def draw_wingHX(self, canvas, scale, a, b, colors):
-        ha = 15
-        hb = 5
-        c = (0, 0)
+        ha = 60
+        hb = 10
+        c = calc_perpendicular(a, b, ha)
         self.draw_triHX(canvas, scale, a, b, c, colors[0])
+        d = calc_perpendicular(a, c, hb)
+        self.draw_triHX(canvas, scale, a, c, d, colors[1])
+        e = calc_perpendicular(c, b, hb)
+        self.draw_triHX(canvas, scale, c, b, e, colors[2])
 
     def draw_logoHX(self, canvas, scale, colors):
         canvas.create_rectangle(0, 0, 200, 200, fill = colors[0])
