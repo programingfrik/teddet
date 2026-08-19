@@ -31,11 +31,11 @@ def calc_perpendicular(a, b, h):
     # Normalize the vector
     nrv = normalize(rv)
 
-    # Rotate 90 degrees, or pi / 2, the normalized real vector
+    # Rotate 270 degrees, or 3 * pi / 2, the normalized real vector
     rnrv = rotate_point(nrv, 3 * math.pi / 2)
 
-    # The only thing left is multiplicate by h so that it has the
-    # solicitated height and translated to the middlepoint.
+    # The only thing left is multiply by h so that it has the
+    # solicitated height and translate it to the middlepoint.
     pv = (rnrv[X] * h) + mid[X], (rnrv[Y] * h) + mid[Y]
 
     return pv
@@ -115,14 +115,14 @@ class about_teddet(Toplevel):
         self.rectTS(canvas, scale, t, (2, 4), (5, 5), fg, fg)
 
     def draw_logoTD(self, canvas, scale, fg, bg):
-        paso = scale // 28
-        self.rectTS(canvas, paso, (1, 1), (1, 1), (28, 28), bg, bg)
-        self.draw_T(canvas, paso, (2, 2), fg, bg)
-        self.draw_D(canvas, paso, (15, 2), fg, bg)
-        self.draw_E(canvas, paso, (12, 7), fg, bg)
-        self.draw_D(canvas, paso, (2, 15), fg, bg)
-        self.draw_T(canvas, paso, (15, 15), fg, bg)
-        self.draw_E(canvas, paso, (12, 20), fg, bg)
+        step = scale // 28
+        self.rectTS(canvas, step, (1, 1), (1, 1), (28, 28), bg, bg)
+        self.draw_T(canvas, step, (2, 2), fg, bg)
+        self.draw_D(canvas, step, (15, 2), fg, bg)
+        self.draw_E(canvas, step, (12, 7), fg, bg)
+        self.draw_D(canvas, step, (2, 15), fg, bg)
+        self.draw_T(canvas, step, (15, 15), fg, bg)
+        self.draw_E(canvas, step, (12, 20), fg, bg)
 
     def draw_logoPF(self, canvas, scale, cwhi, cbla, cora):
         canvas.create_rectangle(0, 0, 200, 200, fill = cora)
@@ -143,11 +143,12 @@ class about_teddet(Toplevel):
 
     def draw_logoHX(self, canvas, scale, colors):
         # canvas.create_rectangle(0, 0, scale, scale, fill = colors[0])
-        tam = (scale // 3)
-        a = (scale // 2, (scale // 2) - tam)
-        b = ((scale // 2) + tam, scale // 2)
-        c = (scale // 2, (scale // 2) + tam)
-        d = ((scale // 2) - tam, scale // 2)
+        size = (scale // 3)
+        center = (scale // 2)
+        a = (center, center - size)
+        b = (center + size, center)
+        c = (center, center + size)
+        d = (center - size, center)
         canvas.create_polygon(*list(a + b + c + d),
                               fill = colors[1], width = 0)
         self.draw_wingHX(canvas, scale, a, b, colors[2:5])
@@ -156,9 +157,16 @@ class about_teddet(Toplevel):
         self.draw_wingHX(canvas, scale, d, a, colors[11:14])
 
     def draw_python(self, canvas, scale, sense, color, cwhi):
-        canvas.create_rectangle(0, 0, 10, 10, fill = color, width = 0)
+        center = scale // 2
+        step = (scale // 42) * sense
+        a = (center + (step * 10), center + (step * 20))
+        b = (center + (step * -10), center + (step))
+        c = (center + (step * 20), center + (step * 10))
+        d = (center + (step * 11), center + (step * -10))
+        canvas.create_rectangle(*list(a + b), fill = color, width = 0)
+        canvas.create_rectangle(*list(c + d), fill = color, width = 0)
 
     def draw_logoPY(self, canvas, scale, cblue, cyell, cwhi):
-        canvas.create_rectangle(0, 0, 200, 200, fill = cwhi)
-        self.draw_python(canvas, scale, 1, cblue, cwhi)
-        self.draw_python(canvas, scale, -1, cyell, cwhi)
+        canvas.create_rectangle(0, 0, scale, scale, fill = cwhi)
+        self.draw_python(canvas, scale, -1, cblue, cwhi)
+        self.draw_python(canvas, scale, 1, cyell, cwhi)
