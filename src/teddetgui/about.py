@@ -49,11 +49,11 @@ class about_teddet(Toplevel):
     def create_content(self):
         cvlogoTD = tki.Canvas(self, height = 200, width = 200)
         cvlogoTD.grid(row = 0, column = 1)
-        self.draw_logoTD(cvlogoTD, 5, "#77F", "#55A")
+        self.draw_logoTD(cvlogoTD, 200, "#77F", "#55A")
 
         cvlogoPF = tki.Canvas(self, height = 200, width = 200)
         cvlogoPF.grid(row = 1, column = 1)
-        self.draw_logoPF(cvlogoPF, 5, "", "", "#550")
+        self.draw_logoPF(cvlogoPF, 200, "", "", "#550")
 
         cvlogoHX = tki.Canvas(self, height = 200, width = 200)
         cvlogoHX.grid(row = 2, column = 1)
@@ -71,29 +71,33 @@ class about_teddet(Toplevel):
 
         cvlogoPY = tki.Canvas(self, height = 200, width = 200)
         cvlogoPY.grid(row = 2, column = 2)
-        self.draw_logoPY(cvlogoPY, 5, "#5A9FD4", "#FFD43B", "#FFF")
+        self.draw_logoPY(cvlogoPY, 200, "#5A9FD4", "#FFD43B", "#FFF")
 
     def rectTS(self, canvas, scale, t, a, b, fill, outline):
+        global X, Y
         canvas.create_rectangle(
-            (scale * a[0]) + t[0], (scale * a[1]) + t[1],
-            (scale * b[0]) + t[0], (scale * b[1]) + t[1],
+            (scale * a[X]) + t[X], (scale * a[Y]) + t[Y],
+            (scale * b[X]) + t[X], (scale * b[Y]) + t[Y],
             fill = fill, outline = outline)
 
     def arcTS(self, canvas, scale, t, a, b, fill, outline, start,
               extent, style):
+        global X, Y
         canvas.create_arc(
-            (scale * a[0]) + t[0], (scale * a[1]) + t[1],
-            (scale * b[0]) + t[0], (scale * b[1]) + t[1],
+            (scale * a[X]) + t[X], (scale * a[Y]) + t[Y],
+            (scale * b[X]) + t[X], (scale * b[Y]) + t[Y],
             fill = fill, outline = outline, start = start,
             extent = extent, style = style)
 
     def draw_T(self, canvas, scale, t, fg, bg):
-        t = (scale * t[0], scale * t[1])
+        global X, Y
+        t = (scale * t[X], scale * t[Y])
         self.rectTS(canvas, scale, t, (0, 0), (12, 4), fg, fg)
         self.rectTS(canvas, scale, t, (4, 4), (8, 12), fg, fg)
 
     def draw_D(self, canvas, scale, t, fg, bg):
-        t = (scale * t[0], scale * t[1])
+        global X, Y
+        t = (scale * t[X], scale * t[Y])
         self.rectTS(canvas, scale, t, (0, 0), (4, 12), fg, fg)
         self.arcTS(canvas, scale, t, (4, 0), (12, 12), fg, fg,
                    -90, 180, tki.CHORD)
@@ -103,20 +107,22 @@ class about_teddet(Toplevel):
         self.rectTS(canvas, scale, t, (4, 4), (6, 8), bg, bg)
 
     def draw_E(self, canvas, scale, t, fg, bg):
-        t = (scale * t[0], scale * t[1])
+        global X, Y
+        t = (scale * t[X], scale * t[Y])
         self.rectTS(canvas, scale, t, (0, 0), (6, 7), fg, fg)
         self.rectTS(canvas, scale, t, (1, 1), (5, 6), bg, bg)
         self.rectTS(canvas, scale, t, (2, 2), (5, 3), fg, fg)
         self.rectTS(canvas, scale, t, (2, 4), (5, 5), fg, fg)
 
     def draw_logoTD(self, canvas, scale, fg, bg):
-        self.rectTS(canvas, scale, (0, 0), (0, 0), (27, 27), bg, bg)
-        self.draw_T(canvas, scale, (1, 1), fg, bg)
-        self.draw_D(canvas, scale, (14, 1), fg, bg)
-        self.draw_E(canvas, scale, (11, 6), fg, bg)
-        self.draw_D(canvas, scale, (1, 14), fg, bg)
-        self.draw_T(canvas, scale, (14, 14), fg, bg)
-        self.draw_E(canvas, scale, (11, 19), fg, bg)
+        paso = scale // 28
+        self.rectTS(canvas, paso, (1, 1), (1, 1), (28, 28), bg, bg)
+        self.draw_T(canvas, paso, (2, 2), fg, bg)
+        self.draw_D(canvas, paso, (15, 2), fg, bg)
+        self.draw_E(canvas, paso, (12, 7), fg, bg)
+        self.draw_D(canvas, paso, (2, 15), fg, bg)
+        self.draw_T(canvas, paso, (15, 15), fg, bg)
+        self.draw_E(canvas, paso, (12, 20), fg, bg)
 
     def draw_logoPF(self, canvas, scale, cwhi, cbla, cora):
         canvas.create_rectangle(0, 0, 200, 200, fill = cora)
