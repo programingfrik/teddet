@@ -71,7 +71,7 @@ class about_teddet(Toplevel):
 
         cvlogoPY = tki.Canvas(self, height = 200, width = 200)
         cvlogoPY.grid(row = 2, column = 2)
-        self.draw_logoPY(cvlogoPY, 5, "#005", "", "")
+        self.draw_logoPY(cvlogoPY, 5, "#5A9FD4", "#FFD43B", "#FFF")
 
     def rectTS(self, canvas, scale, t, a, b, fill, outline):
         canvas.create_rectangle(
@@ -126,8 +126,8 @@ class about_teddet(Toplevel):
                               fill = color, width = 0)
 
     def draw_wingHX(self, canvas, scale, a, b, colors):
-        ha = 60
-        hb = 9
+        ha = int(scale * 0.40)
+        hb = int(scale * 0.063)
         c = calc_perpendicular(a, b, ha)
         self.draw_triHX(canvas, scale, a, b, c, colors[0])
         d = calc_perpendicular(a, c, hb)
@@ -137,10 +137,11 @@ class about_teddet(Toplevel):
 
     def draw_logoHX(self, canvas, scale, colors):
         # canvas.create_rectangle(0, 0, scale, scale, fill = colors[0])
-        a = (scale // 2, scale // 4)
-        b = (scale * 3 // 4, scale // 2)
-        c = (scale // 2, scale * 3 // 4)
-        d = (scale // 4, scale // 2)
+        tam = (scale // 3)
+        a = (scale // 2, (scale // 2) - tam)
+        b = ((scale // 2) + tam, scale // 2)
+        c = (scale // 2, (scale // 2) + tam)
+        d = ((scale // 2) - tam, scale // 2)
         canvas.create_polygon(*list(a + b + c + d),
                               fill = colors[1], width = 0)
         self.draw_wingHX(canvas, scale, a, b, colors[2:5])
@@ -148,7 +149,10 @@ class about_teddet(Toplevel):
         self.draw_wingHX(canvas, scale, c, d, colors[8:11])
         self.draw_wingHX(canvas, scale, d, a, colors[11:14])
 
-    def draw_logoPY(self, canvas, scale, cblue, cyell, cwhi):
-        canvas.create_rectangle(0, 0, 200, 200, fill = cblue)
-        pass
+    def draw_python(self, canvas, scale, sense, color, cwhi):
+        canvas.create_rectangle(0, 0, 10, 10, fill = color, width = 0)
 
+    def draw_logoPY(self, canvas, scale, cblue, cyell, cwhi):
+        canvas.create_rectangle(0, 0, 200, 200, fill = cwhi)
+        self.draw_python(canvas, scale, 1, cblue, cwhi)
+        self.draw_python(canvas, scale, -1, cyell, cwhi)
