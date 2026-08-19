@@ -67,7 +67,7 @@ class about_teddet(Toplevel):
         colors[8] = "#F89C0E"
         colors[12] = colors[10] = "#FFF200"
         colors[11] = "#FAB20B"
-        self.draw_logoHX(cvlogoHX, 5, colors)
+        self.draw_logoHX(cvlogoHX, 200, colors)
 
         cvlogoPY = tki.Canvas(self, height = 200, width = 200)
         cvlogoPY.grid(row = 2, column = 2)
@@ -121,14 +121,13 @@ class about_teddet(Toplevel):
     def draw_logoPF(self, canvas, scale, cwhi, cbla, cora):
         canvas.create_rectangle(0, 0, 200, 200, fill = cora)
 
-
     def draw_triHX(self, canvas, scale, a, b, c, color):
         canvas.create_polygon(*list(a + b + c),
                               fill = color, width = 0)
 
     def draw_wingHX(self, canvas, scale, a, b, colors):
         ha = 60
-        hb = 10
+        hb = 9
         c = calc_perpendicular(a, b, ha)
         self.draw_triHX(canvas, scale, a, b, c, colors[0])
         d = calc_perpendicular(a, c, hb)
@@ -137,11 +136,11 @@ class about_teddet(Toplevel):
         self.draw_triHX(canvas, scale, c, b, e, colors[2])
 
     def draw_logoHX(self, canvas, scale, colors):
-        canvas.create_rectangle(0, 0, 200, 200, fill = colors[0])
-        a = (100, 50)
-        b = (150, 100)
-        c = (100, 150)
-        d = (50, 100)
+        # canvas.create_rectangle(0, 0, scale, scale, fill = colors[0])
+        a = (scale // 2, scale // 4)
+        b = (scale * 3 // 4, scale // 2)
+        c = (scale // 2, scale * 3 // 4)
+        d = (scale // 4, scale // 2)
         canvas.create_polygon(*list(a + b + c + d),
                               fill = colors[1], width = 0)
         self.draw_wingHX(canvas, scale, a, b, colors[2:5])
