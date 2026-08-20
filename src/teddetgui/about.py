@@ -73,50 +73,56 @@ class about_teddet(Toplevel):
         cvlogoPY.grid(row = 2, column = 2)
         self.draw_logoPY(cvlogoPY, 200, "#5A9FD4", "#FFD43B", "#FFF")
 
-    def rectTS(self, canvas, scale, t, a, b, fill, outline):
+    def rectTS(self, canvas, scale, t, a, b, fill, outline, width):
         global X, Y
         canvas.create_rectangle(
             (scale * a[X]) + t[X], (scale * a[Y]) + t[Y],
             (scale * b[X]) + t[X], (scale * b[Y]) + t[Y],
-            fill = fill, outline = outline)
+            fill = fill, outline = outline, width = width)
 
     def arcTS(self, canvas, scale, t, a, b, fill, outline, start,
-              extent, style):
+              extent, style, width):
         global X, Y
         canvas.create_arc(
             (scale * a[X]) + t[X], (scale * a[Y]) + t[Y],
             (scale * b[X]) + t[X], (scale * b[Y]) + t[Y],
             fill = fill, outline = outline, start = start,
-            extent = extent, style = style)
+            extent = extent, style = style, width = width)
+
+    def ovalTS(self, canvas, scale, t, a, b, fill, outline, width):
+        global X, Y
+        canvas.create_oval((scale * a[X]) + t[X], (scale * a[Y]) + t[Y],
+                           (scale * b[X]) + t[X], (scale * b[Y]) + t[Y],
+                           fill = fill, outline = outline, width = width)
 
     def draw_T(self, canvas, scale, t, fg, bg):
         global X, Y
         t = (scale * t[X], scale * t[Y])
-        self.rectTS(canvas, scale, t, (0, 0), (12, 4), fg, fg)
-        self.rectTS(canvas, scale, t, (4, 4), (8, 12), fg, fg)
+        self.rectTS(canvas, scale, t, (0, 0), (12, 4), fg, fg, 1)
+        self.rectTS(canvas, scale, t, (4, 4), (8, 12), fg, fg, 1)
 
     def draw_D(self, canvas, scale, t, fg, bg):
         global X, Y
         t = (scale * t[X], scale * t[Y])
-        self.rectTS(canvas, scale, t, (0, 0), (4, 12), fg, fg)
+        self.rectTS(canvas, scale, t, (0, 0), (4, 12), fg, fg, 1)
         self.arcTS(canvas, scale, t, (4, 0), (12, 12), fg, fg,
-                   -90, 180, tki.CHORD)
-        self.rectTS(canvas, scale, t, (4, 0), (8, 12), fg, fg)
+                   -90, 180, tki.CHORD, 1)
+        self.rectTS(canvas, scale, t, (4, 0), (8, 12), fg, fg, 1)
         self.arcTS(canvas, scale, t, (4, 4), (8, 8), bg, bg,
-                   -90, 180, tki.CHORD)
-        self.rectTS(canvas, scale, t, (4, 4), (6, 8), bg, bg)
+                   -90, 180, tki.CHORD, 1)
+        self.rectTS(canvas, scale, t, (4, 4), (6, 8), bg, bg, 1)
 
     def draw_E(self, canvas, scale, t, fg, bg):
         global X, Y
         t = (scale * t[X], scale * t[Y])
-        self.rectTS(canvas, scale, t, (0, 0), (6, 7), fg, fg)
-        self.rectTS(canvas, scale, t, (1, 1), (5, 6), bg, bg)
-        self.rectTS(canvas, scale, t, (2, 2), (5, 3), fg, fg)
-        self.rectTS(canvas, scale, t, (2, 4), (5, 5), fg, fg)
+        self.rectTS(canvas, scale, t, (0, 0), (6, 7), fg, fg, 1)
+        self.rectTS(canvas, scale, t, (1, 1), (5, 6), bg, bg, 1)
+        self.rectTS(canvas, scale, t, (2, 2), (5, 3), fg, fg, 1)
+        self.rectTS(canvas, scale, t, (2, 4), (5, 5), fg, fg, 1)
 
     def draw_logoTD(self, canvas, scale, fg, bg):
         step = scale // 28
-        self.rectTS(canvas, step, (1, 1), (1, 1), (28, 28), bg, bg)
+        self.rectTS(canvas, step, (1, 1), (1, 1), (28, 28), bg, bg, 1)
         self.draw_T(canvas, step, (2, 2), fg, bg)
         self.draw_D(canvas, step, (15, 2), fg, bg)
         self.draw_E(canvas, step, (12, 7), fg, bg)
@@ -156,33 +162,60 @@ class about_teddet(Toplevel):
         self.draw_wingHX(canvas, scale, c, d, colors[8:11])
         self.draw_wingHX(canvas, scale, d, a, colors[11:14])
 
-    def draw_python(self, canvas, scale, sense, color, cwhi):
+    def draw_python(self, canvas, scale, sense, col1, col2, cwhi):
         center = scale // 2
         step = (scale // 84) * sense
 
-        a = center + (step * 20)
-        b = center + (step * 45)
-        c = center + (step * -20)
-        d = center + (step * 22)
-        e = center + (step * 1)
-        f = center
-        g = center + (step * 13)
-        h = center + (step * 33)
-        i = center + (step * 7)
-        j = center + (step * 27)
-        k = center + (step * 30)
-        l = center + (step * 37)
-        m = c - 1
+        md = 20 # medium distance
+        ld = 35 # large distance
+        ce = 0 # center
+        ma = 2 # margin
+        ov = 8 # oval distante
+        ed = 3 # eye distance
 
-        canvas.create_rectangle(a, l, c, d, fill = color, width = 0)
-        canvas.create_oval(a, b, m, k, fill = color, width = 0)
-        canvas.create_rectangle(l, a, d, c, fill = color, width = 0)
-        canvas.create_oval(b, a, k, m, fill = color, width = 0)
-        canvas.create_rectangle(d, a, c, e, fill = color, width = 0)
-        canvas.create_rectangle(f, d, c, a, fill = color, width = 0)
-        canvas.create_oval(g, h, i, j, fill = cwhi, width = 0)
+        os = ld + ov # oval superior
+        oi = ld - ov # oval inferior
+        mm = md + ma # medium plus margin
+        mb = ma // 2 # margin bottom
+        ex = (md // 2) # eye X
+        ey = int(md * 1.5) # eye Y
+        eb = ex + ed # eye before
+        ea = ex - ed # eye after
+        es = ey + ed # eye superior
+        ei = ey - ed # eye inferior
+        cd = md // 2 # curve distance
+        cx = -md + cd # curve x
+        cy = cd + mb # curve y
+        cb = cx + cd # curve before
+        ca = -md
+        cs = cy + cd # curve superior
+        ci = cy - cd # curve infecior
+        ub = cb + ma # outward before
+        ua = ca - ma # outward after
+        us = cs + ma # outward superior
+        ui = ci - ma # outward inferior
+
+        cp = (center, center) # central point
+
+        self.rectTS(canvas, step, cp, (ub, us), (ua, ui), col2, cwhi, 0)
+        self.ovalTS(canvas, step, cp, (ub, us), (ua, ui), cwhi, cwhi, 0)
+        self.ovalTS(canvas, step, cp, (cb, cs), (ca, ci), col1, cwhi, 0)
+
+        self.rectTS(canvas, step, cp, (-md, ld), (-mm, cy), cwhi, cwhi, 0)
+        self.rectTS(canvas, step, cp, (-cx, mb), (cx, -mb), cwhi, cwhi, 0)
+        self.rectTS(canvas, step, cp, (md, mm), (ce, md), cwhi, cwhi, 0)
+
+        self.rectTS(canvas, step, cp, (md, ld), (-md, mm), col1, cwhi, 0)
+        self.ovalTS(canvas, step, cp, (md, os), (-md, oi), col1, cwhi, 0)
+
+        self.rectTS(canvas, step, cp, (ld, md), (mm, -md), col1, cwhi, 0)
+        self.ovalTS(canvas, step, cp, (os, md), (oi, -md), col1, cwhi, 0)
+
+        self.rectTS(canvas, step, cp, (mm, md), (cx, mb), col1, cwhi, 0)
+        self.rectTS(canvas, step, cp, (ce, mm), (-md, cy), col1, cwhi, 0)
+        self.ovalTS(canvas, step, cp, (eb, es), (ea, ei), cwhi, cwhi, 0)
 
     def draw_logoPY(self, canvas, scale, cblue, cyell, cwhi):
         canvas.create_rectangle(0, 0, scale, scale, fill = cwhi)
-        self.draw_python(canvas, scale, -1, cblue, cwhi)
-        self.draw_python(canvas, scale, 1, cyell, cwhi)
+        self.draw_python(canvas, scale, -1, cblue, cyell, cwhi)
+        self.draw_python(canvas, scale, 1, cyell, cblue, cwhi)
