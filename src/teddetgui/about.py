@@ -53,7 +53,8 @@ class about_teddet(Toplevel):
 
         cvlogoPF = tki.Canvas(self, height = 200, width = 200)
         cvlogoPF.grid(row = 1, column = 1)
-        self.draw_logoPF(cvlogoPF, 200, "", "", "#550")
+        self.draw_logoPF(cvlogoPF, 200, self.cget("bg"),
+                         "#000", "#D95000")
 
         cvlogoHX = tki.Canvas(self, height = 200, width = 200)
         cvlogoHX.grid(row = 2, column = 1)
@@ -132,7 +133,39 @@ class about_teddet(Toplevel):
         self.draw_E(canvas, step, (12, 20), fg, bg)
 
     def draw_logoPF(self, canvas, scale, cwhi, cbla, cora):
-        canvas.create_rectangle(0, 0, 200, 200, fill = cora)
+        global X, Y
+        # canvas.create_rectangle(0, 0, 200, 200, fill = cwhi)
+        points = [
+            (298.57, 116.65), (391.82, 73.73), (491.43, 106.65),
+            (298.57, 119.50), (189.28, 332.15), (229.87, 473.54),
+            (367.87, 473.41), (427.14, 430.93), (332.86, 482.36),
+            (355.71, 505.22), (467.14, 368.08), (478.25, 455.05),
+            (232.86, 233.79), (221.43, 245.22), (238.57, 239.50),
+            (367.14, 253,79), (358.57, 248.08), (344.29, 256.65),
+            (360.00, 255.22), (197.14, 366.65), (271.93, 399.50),
+            (395.71, 356.65)
+                  ]
+        lines = [[0, 1, 2], [3, 4, 5, 6, 7], [8, 9], [10, 11],
+                 [12, 13, 14], [15, 16, 17, 18], [19, 20, 21]]
+        poligons = []
+        ratio = scale / 1000
+        # draw poligons
+        for pol in poligons:
+            temp = []
+            for pp in pol:
+                temp += [points[pp][X] * ratio,
+                         points[pp][Y] * ratio]
+            canvas.create_polygon(temp, fill = cora, width = 0,
+                                  smooth = True)
+        # draw lines
+        for line in lines:
+            temp = []
+            for pl in line:
+                temp += [points[pl][X] * ratio,
+                         points[pl][Y] * ratio]
+            canvas.create_line(temp, fill = cbla, width = 2,
+                               smooth = True)
+
 
     def draw_triHX(self, canvas, scale, a, b, c, color):
         canvas.create_polygon(*list(a + b + c),
