@@ -158,13 +158,29 @@ class about_teddet(Toplevel):
 
     def draw_python(self, canvas, scale, sense, color, cwhi):
         center = scale // 2
-        step = (scale // 42) * sense
-        a = (center + (step * 10), center + (step * 20))
-        b = (center + (step * -10), center + (step))
-        c = (center + (step * 20), center + (step * 10))
-        d = (center + (step * 11), center + (step * -10))
-        canvas.create_rectangle(*list(a + b), fill = color, width = 0)
-        canvas.create_rectangle(*list(c + d), fill = color, width = 0)
+        step = (scale // 84) * sense
+
+        a = center + (step * 20)
+        b = center + (step * 45)
+        c = center + (step * -20)
+        d = center + (step * 22)
+        e = center + (step * 1)
+        f = center
+        g = center + (step * 13)
+        h = center + (step * 33)
+        i = center + (step * 7)
+        j = center + (step * 27)
+        k = center + (step * 30)
+        l = center + (step * 37)
+        m = c - 1
+
+        canvas.create_rectangle(a, l, c, d, fill = color, width = 0)
+        canvas.create_oval(a, b, m, k, fill = color, width = 0)
+        canvas.create_rectangle(l, a, d, c, fill = color, width = 0)
+        canvas.create_oval(b, a, k, m, fill = color, width = 0)
+        canvas.create_rectangle(d, a, c, e, fill = color, width = 0)
+        canvas.create_rectangle(f, d, c, a, fill = color, width = 0)
+        canvas.create_oval(g, h, i, j, fill = cwhi, width = 0)
 
     def draw_logoPY(self, canvas, scale, cblue, cyell, cwhi):
         canvas.create_rectangle(0, 0, scale, scale, fill = cwhi)
