@@ -71,7 +71,8 @@ class about_teddet(Toplevel):
 
         cvlogoPY = tki.Canvas(self, height = 200, width = 200)
         cvlogoPY.grid(row = 2, column = 2)
-        self.draw_logoPY(cvlogoPY, 200, "#306998", "#FFD43B", "#FFF")
+        self.draw_logoPY(cvlogoPY, 200, "#306998", "#FFD43B",
+                         self.cget("bg"))
 
     def rectTS(self, canvas, scale, t, a, b, fill, outline, width):
         global X, Y
@@ -216,6 +217,6 @@ class about_teddet(Toplevel):
         self.ovalTS(canvas, step, cp, (eb, es), (ea, ei), cwhi, cwhi, 0)
 
     def draw_logoPY(self, canvas, scale, cblue, cyell, cwhi):
-        canvas.create_rectangle(0, 0, scale, scale, fill = cwhi)
+        # canvas.create_rectangle(0, 0, scale, scale, fill = cwhi)
         self.draw_python(canvas, scale, -1, cblue, cyell, cwhi)
         self.draw_python(canvas, scale, 1, cyell, cblue, cwhi)
