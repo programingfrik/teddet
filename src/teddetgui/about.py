@@ -71,7 +71,7 @@ class about_teddet(Toplevel):
 
         cvlogoPY = tki.Canvas(self, height = 200, width = 200)
         cvlogoPY.grid(row = 2, column = 2)
-        self.draw_logoPY(cvlogoPY, 200, "#5A9FD4", "#FFD43B", "#FFF")
+        self.draw_logoPY(cvlogoPY, 200, "#306998", "#FFD43B", "#FFF")
 
     def rectTS(self, canvas, scale, t, a, b, fill, outline, width):
         global X, Y
